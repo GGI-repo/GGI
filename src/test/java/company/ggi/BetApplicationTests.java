@@ -1,5 +1,6 @@
 package company.ggi;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +11,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.net.MalformedURLException;
 import java.net.URL;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -26,14 +28,16 @@ public class BetApplicationTests {
 
 	@Before
 	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:"+ port + "/");
+		this.base = new URL("http://localhost:"+ port);
 	}
 
 	@Test
 	public void testHello(){
-		ResponseEntity<String> responseEntity = template.getForEntity(base.toString(),
+		/*ResponseEntity<String> responseEntity = template.getForEntity(base.toString(),
 				String.class);
-		assert(responseEntity.getBody().equals("Hello bet"));
+		Assert.assertTrue(responseEntity.getBody().equals("Hello bet"));*/
+		String body = this.template.getForObject(base.toString(), String.class);
+		assertThat(body).isEqualTo("Hello bet");
 	}
 
 }
