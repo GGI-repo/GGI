@@ -33,9 +33,6 @@ public class BetApplicationTests {
 
 	@Test
 	public void testHello(){
-		/*ResponseEntity<String> responseEntity = template.getForEntity(base.toString(),
-				String.class);
-		Assert.assertTrue(responseEntity.getBody().equals("Hello bet"));*/
 		String body = this.template.getForObject(base.toString(), String.class);
 		assertThat(body).isEqualTo("Hello bet");
 	}
