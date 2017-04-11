@@ -27,7 +27,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("company.ggi")
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories("company.ggi.repository")
+@EnableJpaRepositories("company.ggi.dao")
 public class WebAppConfig {
 
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "spring.database.driverClassName";
