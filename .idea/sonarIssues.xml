@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/devhome/env_TN/apiiv-icv/apiiv-icv-data/src/test/java/com/sncf/siv/apiiv/icv/data/CtiFeedBackRepositoryTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
@@ -19,6 +24,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/company/ggi/controller/CategoryController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/controller/betController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/dao/CategoryDao.java">
           <value>
             <set />
           </value>
@@ -59,6 +74,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/company/ggi/BetApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/company/ggi/service/CategoryServiceTest.java">
           <value>
             <set />
           </value>

@@ -14,7 +14,12 @@ public class Category  implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique=true)
     private String name;
+
+    public Category() {
+        this.name = null;
+    }
 
     public Category(String name) {
         this.name = name;

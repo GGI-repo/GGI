@@ -1,6 +1,5 @@
 package company.ggi.service;
 
-import company.ggi.exception.CategoryException;
 import company.ggi.model.Category;
 import org.springframework.context.annotation.Bean;
 
@@ -11,13 +10,15 @@ import java.util.List;
  */
 public interface CategoryService {
 
-    public Category create(Category category);
+    public Category create(Category category) throws Exception;
 
-    public Category delete(int id) throws CategoryException;
+    public Category delete(int id) throws Exception;
 
     public List<Category> findAll();
 
-    public Category update(Category category) throws CategoryException;
+    public Category update(Category category) throws Exception;
 
-    public Category findById(int id) throws CategoryException;
+    public Category findById(int id) throws Exception;
+
+    public Category findByName(String name) throws Exception;
 }
