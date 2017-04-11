@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import company.ggi.exception.CategoryException;
 import company.ggi.model.Category;
-import company.ggi.repository.CategoryRepository;
+import company.ggi.dao.CategoryDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import company.ggi.service.CategoryService;
@@ -19,7 +19,7 @@ import company.ggi.service.CategoryService;
 public class CategoryServiceImpl implements CategoryService {
 
     @Resource
-    private CategoryRepository categoryRepository;
+    private CategoryDao categoryRepository;
 
     @Override
     @Transactional
