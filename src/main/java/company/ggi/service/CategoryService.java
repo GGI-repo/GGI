@@ -2,6 +2,7 @@ package company.ggi.service;
 
 import company.ggi.exception.CategoryException;
 import company.ggi.model.Category;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
