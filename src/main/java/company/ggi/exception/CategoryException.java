@@ -6,7 +6,7 @@ package company.ggi.exception;
 public class CategoryException extends Exception {
 
     public static final String CATEGORY_NOT_FOUND = "Category not found";
-    public static final String CATEGORY_EXIST = "Category exist already";
+    public static final String CATEGORY_EXISTS = "Category already exists";
     public static final String CATEGORY_WITH_NULL_NAME = "Category name is null";
 
     private String message;
