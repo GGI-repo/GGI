@@ -21,7 +21,7 @@ import java.util.Date;
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {company.ggi.config.WebAppConfig.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @SuppressWarnings("SpringJavaAutowiringInspection")
-public class TestUser {
+public class UserTest {
 
     private User testConstructorUser;
 

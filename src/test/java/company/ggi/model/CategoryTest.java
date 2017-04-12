@@ -19,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {company.ggi.config.WebAppConfig.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @SuppressWarnings("SpringJavaAutowiringInspection")
-public class TestCategory {
+public class CategoryTest {
     private Category categoryTest;
     private String categoryNameTest;
     @Before
