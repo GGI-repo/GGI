@@ -36,11 +36,13 @@ public class CategoryServiceTest {
 
     private Category test;
 
+    private final String name = "test";
+
     @Before
     public void setUp() {
 
         categoryDao.deleteAll();
-        test = new Category("test");
+        test = new Category(name);
         test = categoryDao.save(test);
         categoryService = new CategoryServiceImpl();
         ReflectionTestUtils.setField(categoryService, "categoryRepository", categoryDao);
@@ -65,7 +67,7 @@ public class CategoryServiceTest {
     @Test(expected = CategoryException.class)
     public void testCreateCategoryWithException() throws Exception {
 
-        categoryService.create(new Category("test"));
+        categoryService.create(new Category(name));
     }
 
     @Test
@@ -95,6 +97,15 @@ public class CategoryServiceTest {
     public void testFindCategoryByIdWithException() throws Exception {
 
         categoryService.findById(-1);
+    }
+
+    @Test
+    public void testFindCategoryByName() throws Exception {
+
+        Category found = categoryService.findByName(name);
+        Assert.assertNotNull(found);
+        Assert.assertFalse(found.getName().isEmpty());
+        Assert.assertTrue(found.getName().equals(name));
     }
 
     @Test

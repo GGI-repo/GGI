@@ -8,7 +8,82 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/devhome/env_TN/apiiv-icv/apiiv-icv-config/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/apiiv-icv/apiiv-icv-config/src/main/environment/local/jboss/modules/com/sncf/siv/leshalles/apiiv/icv/config/main/apiiv-icv-client-prod.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/devhome/env_TN/apiiv-icv/apiiv-icv-data/src/test/java/com/sncf/siv/apiiv/icv/data/CtiFeedBackRepositoryTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/CleanMojo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/CompareException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/CompareFiles.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/CompareMojo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/CompareProprieties.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/CreateProprieties.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/PropertyFiles.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/ProprietyException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/main/java/compareProprieties.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/test/java/CleanMojoTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/test/java/CompareMojoTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/test/resources/pom.xml">
           <value>
             <set />
           </value>
@@ -74,6 +149,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/company/ggi/BetApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/company/ggi/controller/CategoryControllerTest.java">
           <value>
             <set />
           </value>

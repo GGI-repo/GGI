@@ -1,9 +1,11 @@
 package company.ggi.exception;
 
+import java.io.Serializable;
+
 /**
  * Created by Ismail ELFAQIR on 10/04/2017.
  */
-public class CategoryException extends Exception {
+public class CategoryException extends Exception implements Serializable {
 
     public static final String CATEGORY_NOT_FOUND = "Category not found";
     public static final String CATEGORY_EXIST = "Category exist already";
