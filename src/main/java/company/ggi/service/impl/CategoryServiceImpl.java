@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new CategoryException(CategoryException.CATEGORY_WITH_NULL_NAME);
 
         if(categoryRepository.findByName(newCategory.getName()) != null )
-            throw new CategoryException(CategoryException.CATEGORY_EXIST);
+            throw new CategoryException(CategoryException.CATEGORY_EXISTS);
 
         return categoryRepository.save(newCategory);
     }

@@ -20,6 +20,8 @@ public class Discussion {
         this.sender = sender;
     }
 
+    public Discussion(){}
+
     public String getMessage() {
         return message;
     }

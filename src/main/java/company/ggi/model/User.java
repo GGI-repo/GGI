@@ -17,7 +17,7 @@ public class User {
 
     private String lastName;
 
-    public User(String lastName, String userName, String firstName, String email, String birthDay) {
+    public User(String lastName, String userName, String firstName, String email, Date birthDay) {
         this.lastName = lastName;
         this.userName = userName;
         this.firstName = firstName;
@@ -27,6 +27,9 @@ public class User {
         this.registration = new Date();
         dateFormat.format(this.registration);
         this.credit = 5.0;
+    }
+
+    public User() {
     }
 
     public String getLastName() {
@@ -45,7 +48,7 @@ public class User {
         return email;
     }
 
-    public String getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
@@ -60,7 +63,7 @@ public class User {
     private String userName;
     private String firstName;
     private String email;
-    private String birthDay;
+    private Date birthDay;
     private Date registration;
     private Double credit;
 
