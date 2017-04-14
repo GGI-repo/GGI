@@ -47,7 +47,7 @@ public class CategoryController {
         }
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity createNewCategory(@ModelAttribute Category category,
                                     final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
@@ -61,7 +61,7 @@ public class CategoryController {
         }
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public ResponseEntity updateCategory(@ModelAttribute Category category,
                                     final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
@@ -75,7 +75,7 @@ public class CategoryController {
         }
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
     public ResponseEntity deleteCategory(@ModelAttribute Category category,
                                          final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 

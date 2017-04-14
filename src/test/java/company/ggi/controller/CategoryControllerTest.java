@@ -48,8 +48,7 @@ public class CategoryControllerTest {
     private MockMvc mockMvc;
 
     private final String categoryUrl = "/category/";
-    private final String createUrl = categoryUrl + "create";
-    private final String updateUrl = categoryUrl + "update";
+    private final String findUrl = categoryUrl + "find";
 
     private ObjectMapper mapper;
 
@@ -82,7 +81,7 @@ public class CategoryControllerTest {
     public void testCreateCategory() throws Exception {
 
         Category test = new Category("example");
-        MvcResult result = mockMvc.perform(post(createUrl)
+        MvcResult result = mockMvc.perform(post(categoryUrl)
                 .param("name", "" + test.getName()))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -94,7 +93,7 @@ public class CategoryControllerTest {
     public void testCreateCategoryWithException() throws Exception {
 
         when(categoryService.create(any(Category.class))).thenThrow(new CategoryException(CategoryException.CATEGORY_NOT_FOUND));
-        mockMvc.perform(post(createUrl)
+        mockMvc.perform(post(categoryUrl)
                 .param("id", "" + categoriesFactory.get(0).getId()))
                 .andExpect(status().isBadRequest());
     }
@@ -106,7 +105,7 @@ public class CategoryControllerTest {
         test.setName("testUpdate");
 
         when(categoryService.update(any(Category.class))).thenReturn(test);
-        MvcResult result = mockMvc.perform(post(updateUrl)
+        MvcResult result = mockMvc.perform(put(updateUrl)
                 .param("id", "" + test.getId())
                 .param("name", test.getName()))
                 .andExpect(status().isBadRequest())
@@ -118,7 +117,7 @@ public class CategoryControllerTest {
     public void testUpdateCategoryWithException() throws Exception {
 
         when(categoryService.update(any(Category.class))).thenThrow(new CategoryException(CategoryException.CATEGORY_NOT_FOUND));
-        mockMvc.perform(post(updateUrl)
+        mockMvc.perform(put(categoryUrl)
                 .param("id", "" + categoriesFactory.get(0).getId()))
                 .andExpect(status().isBadRequest());
     }
