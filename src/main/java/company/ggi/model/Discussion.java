@@ -11,46 +11,32 @@ import java.util.Date;
 public class Discussion {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    public Discussion(String message, Date sendDate, User sender) {
-        this.message = message;
-        this.sendDate = sendDate;
-        this.sender = sender;
+    private String title;
+
+    public Discussion(String title) {
+        this.title = title;
     }
 
-    public Discussion(){}
-
-    public String getMessage() {
-        return message;
+    public Discussion() {
     }
 
-    public Date getSendDate() {
-        return sendDate;
+    public Integer getId() {
+        return id;
     }
 
-    public User getSender() {
-        return sender;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSendDate(Date sendDate) {
-        this.sendDate = sendDate;
+    public void setTitle(String title) {
+        this.title = title;
     }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    private String message;
-    private Date sendDate;
-
-    @OneToOne
-    @JoinColumn(name="id_user")
-    private User sender;
 
 }

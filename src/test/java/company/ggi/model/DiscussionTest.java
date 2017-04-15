@@ -24,18 +24,13 @@ import java.util.Date;
 public class DiscussionTest {
 
     private Discussion discussionTest;
-    private User messageSenderTest;
-    private Date sendDate;
-    private String messageTest;
+    private String titleTest;
 
     @Before
     public void setUp(){
-        //String message, Date sendDate, User sender
-        sendDate = new Date(20125544);
-        messageTest = "this is Discussion test";
-        Date birthDay = new Date(20100222);
-        messageSenderTest = new User("LastName", "UserName", "FirstName","test.example@email.com",birthDay);
-        discussionTest = new Discussion(messageTest, sendDate, messageSenderTest);
+        
+        titleTest = "this is Discussion test";
+        discussionTest = new Discussion(titleTest);
     }
 
     @Test
@@ -45,16 +40,7 @@ public class DiscussionTest {
 
     @Test
     public void discussionMessageGetterTest(){
-        Assert.assertTrue(discussionTest.getMessage().equals(messageTest));
+        Assert.assertTrue(discussionTest.getTitle().equals(titleTest));
     }
 
-    @Test
-    public void discussionSendDateGetterTest(){
-        Assert.assertTrue(discussionTest.getSendDate().equals(sendDate));
-    }
-
-    @Test
-    public void discussionSenderUserGetterTest(){
-        Assert.assertTrue(discussionTest.getSender().equals(messageSenderTest));
-    }
 }
