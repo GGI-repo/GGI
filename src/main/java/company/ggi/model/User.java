@@ -14,8 +14,13 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
-
     private String lastName;
+    private String userName;
+    private String firstName;
+    private String email;
+    private Date birthDay;
+    private Date registration;
+    private Double credit;
 
     public User(String lastName, String userName, String firstName, String email, Date birthDay) {
         this.lastName = lastName;
@@ -30,6 +35,10 @@ public class User {
     }
 
     public User() {
+    }
+
+    public Integer getId(){
+        return id;
     }
 
     public String getLastName() {
@@ -59,13 +68,4 @@ public class User {
     public Double getCredit() {
         return credit;
     }
-
-    private String userName;
-    private String firstName;
-    private String email;
-    private Date birthDay;
-    private Date registration;
-    private Double credit;
-
-
 }
