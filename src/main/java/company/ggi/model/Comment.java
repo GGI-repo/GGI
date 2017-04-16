@@ -33,6 +33,13 @@ public class Comment implements Serializable {
         this.commentDate = commentDate;
     }
 
+    public Comment(String contenu, String commentDate, Party party, User user) {
+        this.contenu = contenu;
+        this.commentDate = commentDate;
+        this.party = party;
+        this.user = user;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USERS")
-public class User implements Serializable {
+public class User  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +41,9 @@ public class User implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Bet> bets = new ArrayList<Bet>();
 
     public User(String lastName, String userName, String firstName, String email, Date birthDay) {
         this.lastName = lastName;
