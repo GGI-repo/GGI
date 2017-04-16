@@ -1,6 +1,6 @@
 package company.ggi.dao;
 
-import company.ggi.model.Category;
+
 import company.ggi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

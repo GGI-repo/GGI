@@ -1,7 +1,9 @@
 package company.ggi.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by etudiant on 15/04/17.
@@ -16,6 +18,9 @@ public class UserGroup {
     private String name;
     private Date creation_date;
     private Double credit;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userGroup")
+    private List<User> comments = new ArrayList<User>();
 
     public UserGroup() {
     }

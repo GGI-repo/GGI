@@ -1,7 +1,9 @@
 package company.ggi.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by etudiant on 16/04/17.
@@ -17,9 +19,13 @@ public class Party {
     private String description;
     private Date startingDate;
     private String GroupName;
+
     @OneToOne
     @JoinColumn(name="id_game")
     private Game game;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "party")
+    private List<Comment> comments = new ArrayList<Comment>();;
 
     public Integer getId() {
         return id;
@@ -67,6 +73,14 @@ public class Party {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Party(String name, String description, Date startingDate, String groupName, Game game) {
