@@ -15,7 +15,9 @@ public class Game implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    private String Name;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
     private String discription;
     @OneToOne
     @JoinColumn(name="id_category")
@@ -33,11 +35,11 @@ public class Game implements Serializable {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getDiscription() {
@@ -58,7 +60,7 @@ public class Game implements Serializable {
 
     public Game(String name, String discription, Category category) {
 
-        Name = name;
+        this.name = name;
         this.discription = discription;
         this.category = category;
     }

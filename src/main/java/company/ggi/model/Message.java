@@ -20,8 +20,10 @@ public class Message implements Serializable {
     @JoinColumn(name = "id_discussion_group")
     private DiscussionGroup discussionGroup;
 
+    @Column(nullable = false)
     private String message;
 
+    @Column(nullable = false)
     private Date sentDate;
 
     public Message(DiscussionGroup discussionGroup, String message, Date sentDate) {

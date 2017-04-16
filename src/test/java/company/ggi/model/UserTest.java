@@ -26,40 +26,48 @@ public class UserTest {
     private User testConstructorUser;
 
     private Date birthDay;
-
+    private String lastName;
+    private String userName;
+    private String firstName;
+    private String email;
     @Before
     public void setUp() {
         birthDay = new Date(20100222);
-        testConstructorUser = new User("LastName", "UserName", "FirstName","test.example@email.com",birthDay);
+        lastName = "LastName";
+        userName = "UserName";
+        firstName = "FirstName";
+        email = "test.example@email.com";
+
+        testConstructorUser = new User(lastName, userName, firstName, email, birthDay);
     }
 
     @Test
     public void testUserConstructor(){
-        Assert.assertNotNull(testConstructorUser.equals(null));
+        Assert.assertNotNull(testConstructorUser);
     }
 
     @Test
     public void testUserLastNameGetter(){
-        Assert.assertTrue(testConstructorUser.getLastName().equals("LastName"));
+        Assert.assertEquals(testConstructorUser.getLastName(),lastName);
     }
 
     @Test
     public void testUserUserNameGetter(){
-        Assert.assertTrue(testConstructorUser.getUserName().equals("UserName"));
+        Assert.assertEquals(testConstructorUser.getUserName(),userName);
     }
 
     @Test
     public void testUserFirstNameGetter(){
-        Assert.assertTrue(testConstructorUser.getFirstName().equals("FirstName"));
+        Assert.assertEquals(testConstructorUser.getFirstName(),firstName);
     }
 
     @Test
     public void testUserEmailGetter(){
-        Assert.assertTrue(testConstructorUser.getEmail().equals("test.example@email.com"));
+        Assert.assertEquals(testConstructorUser.getEmail(),email);
     }
 
     @Test
     public void testUserBirthDayGetter(){
-        Assert.assertTrue(testConstructorUser.getBirthDay().equals(birthDay));
+        Assert.assertEquals(testConstructorUser.getBirthDay(), birthDay);
     }
 }

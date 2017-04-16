@@ -22,13 +22,13 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String userName;
 
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String email;
     private Date birthDay;
     private Date registration;
@@ -55,6 +55,38 @@ public class User implements Serializable {
     }
 
     public User() {
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public void setRegistration(Date registration) {
+        this.registration = registration;
+    }
+
+    public void setCredit(Double credit) {
+        this.credit = credit;
     }
 
     public Integer getId(){

@@ -15,6 +15,7 @@ public class Discussion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String title;
 
     public Discussion(String title) {

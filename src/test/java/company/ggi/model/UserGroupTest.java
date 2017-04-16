@@ -42,7 +42,7 @@ public class UserGroupTest {
 
     @Test
     public void userGroupCreationDateGettersTest(){
-        Assert.assertEquals(userGroupTest.getCreation_date(), userGroupCreationDate);
+        Assert.assertEquals(userGroupTest.getCreationDate(), userGroupCreationDate);
     }
 
     @Test
