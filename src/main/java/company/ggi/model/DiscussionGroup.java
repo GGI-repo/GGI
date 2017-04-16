@@ -1,13 +1,14 @@
 package company.ggi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by ismail ELFAQIR on 15/04/2017.
  */
 @Entity
 @Table(name = "DISCUSSIONGROUP")
-public class DiscussionGroup {
+public class DiscussionGroup implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

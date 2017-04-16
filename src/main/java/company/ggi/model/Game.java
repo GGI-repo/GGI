@@ -1,6 +1,7 @@
 package company.ggi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by etudiant on 16/04/17.
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "GAME")
-public class Game {
+public class Game implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

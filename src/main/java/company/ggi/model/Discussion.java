@@ -1,6 +1,7 @@
 package company.ggi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "DISCUSSION")
-public class Discussion {
+public class Discussion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

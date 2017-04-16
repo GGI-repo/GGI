@@ -1,6 +1,7 @@
 package company.ggi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ import java.util.List;
  * Created by Driss BENMOUMEN on 10/04/17.
  */
 @Entity
-@Table(name = "USER")
-public class User {
+@Table(name = "USERS")
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,15 +34,13 @@ public class User {
     private Date registration;
     private Double credit;
 
-/*
-* TODO DBN user table is not created in schema
-* */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_userGroup")
+
+    @ManyToOne
+    @JoinColumn(name="id_userGroup", referencedColumnName = "id_userGroup")
     private  UserGroup userGroup;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Comment> comments = new ArrayList<Comment>();
+    private List<Comment> comments = new ArrayList<>();
 
     public User(String lastName, String userName, String firstName, String email, Date birthDay) {
         this.lastName = lastName;
