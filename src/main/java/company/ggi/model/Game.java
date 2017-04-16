@@ -20,6 +20,9 @@ public class Game {
     @JoinColumn(name="id_category")
     private Category category;
 
+    public Game() {
+    }
+
     public Integer getId() {
         return id;
     }
