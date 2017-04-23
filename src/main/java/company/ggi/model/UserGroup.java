@@ -26,8 +26,8 @@ public class UserGroup implements Serializable{
 
     private Double credit;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userGroup")
-    private List<User> comments = new ArrayList<User>();
+    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "userGroup")
+    //private List<User> comments = new ArrayList<User>();
 
     public UserGroup() {
     }

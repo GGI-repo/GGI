@@ -1,5 +1,7 @@
 package company.ggi.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -34,13 +36,15 @@ public class User implements Serializable {
     private Date registration;
     private Double credit;
 
-
-    @ManyToOne
-    @JoinColumn(name="id_userGroup", referencedColumnName = "id_userGroup")
-    private  UserGroup userGroup;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonManagedReference
+    private List<DiscussionGroup> discussionGroups = new ArrayList<>();
+
+    public User() {
+    }
 
     public User(String lastName, String userName, String firstName, String email, Date birthDay) {
         this.lastName = lastName;
@@ -52,9 +56,6 @@ public class User implements Serializable {
         this.registration = new Date();
         dateFormat.format(this.registration);
         this.credit = 5.0;
-    }
-
-    public User() {
     }
 
     public void setId(Integer id) {
@@ -129,11 +130,11 @@ public class User implements Serializable {
         this.comments = comments;
     }
 
-    public UserGroup getUserGroup() {
-        return userGroup;
+    public List<DiscussionGroup> getDiscussionGroups() {
+        return discussionGroups;
     }
 
-    public void setUserGroup(UserGroup userGroup) {
-        this.userGroup = userGroup;
+    public void setDiscussionGroups(List<DiscussionGroup> discussionGroups) {
+        this.discussionGroups = discussionGroups;
     }
 }
