@@ -92,4 +92,7 @@ public class Party implements Serializable {
         GroupName = groupName;
         this.game = game;
     }
+
+    public Party() {
+    }
 }
