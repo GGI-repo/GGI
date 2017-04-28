@@ -29,13 +29,11 @@ public class ResourceServersConfig {
         resource.setConfigurers(Collections.<ResourceServerConfigurer>singletonList(new ResourceServerConfigurerAdapter() {
             @Override
             public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-                resources.resourceId("user-resources");
+                resources.resourceId(OAuth2Config.USER_RESOURCES);
             }
 
             @Override
             public void configure(HttpSecurity http) throws Exception {
-                http.csrf().disable();
-                http.httpBasic().disable();
                 http.antMatcher("/**").authorizeRequests().anyRequest()
                         .access("#oauth2.hasAnyScope('read', 'write')");
             }
@@ -54,7 +52,7 @@ public class ResourceServersConfig {
         resource.setConfigurers(Collections.<ResourceServerConfigurer>singletonList(new ResourceServerConfigurerAdapter() {
             @Override
             public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-                resources.resourceId("admin-resources");
+                resources.resourceId(OAuth2Config.ADMIN_RESOURCES);
             }
 
             @Override
@@ -77,14 +75,14 @@ public class ResourceServersConfig {
         resource.setConfigurers(Collections.<ResourceServerConfigurer>singletonList(new ResourceServerConfigurerAdapter() {
             @Override
             public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-                resources.resourceId("public-resources");
+                resources.resourceId(OAuth2Config.PUBLIC_RESOURCES);
             }
 
             @Override
             public void configure(HttpSecurity http) throws Exception {
                 http.csrf().disable();
                 http.httpBasic().disable();
-                http.antMatcher("/test")
+                http.antMatcher("/healthcheck")
                         .authorizeRequests().anyRequest()
                         .permitAll();
             }

@@ -148,7 +148,7 @@ public class User implements Serializable, UserDetails {
     }
 
     public void setPassword(String password) {
-        this.password = this.password;
+        this.password = password;
     }
 
     public List<Comment> getComments() {

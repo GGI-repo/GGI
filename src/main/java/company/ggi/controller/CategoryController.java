@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/category")
+@RequestMapping(value = "/admin/category")
 public class CategoryController {
 
     @Autowired
