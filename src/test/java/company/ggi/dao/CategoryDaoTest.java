@@ -33,7 +33,7 @@ public class CategoryDaoTest {
     @Before
     public void setUp(){
         categoryDaoTest.deleteAll();
-        categoryNameTest = "My test ";
+        categoryNameTest = "My test";
         categoryTest = new Category(categoryNameTest);
         categoryTest = categoryDaoTest.save(categoryTest);
     }

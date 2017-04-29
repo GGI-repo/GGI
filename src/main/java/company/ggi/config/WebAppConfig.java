@@ -67,14 +67,6 @@ public class WebAppConfig {
         return entityManagerFactoryBean;
     }
 
-    private Properties hibProperties() {
-        Properties properties = new Properties();
-        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-        properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL));
-        return properties;
-    }
-
     @Bean
     public JpaTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -89,6 +81,14 @@ public class WebAppConfig {
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
         return resolver;
+    }
+
+    private Properties hibProperties() {
+        Properties properties = new Properties();
+        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+        properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL));
+        return properties;
     }
 
 }

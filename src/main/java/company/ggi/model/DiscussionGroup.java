@@ -1,7 +1,10 @@
 package company.ggi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by ismail ELFAQIR on 15/04/2017.
@@ -11,18 +14,26 @@ import java.io.Serializable;
 public class DiscussionGroup implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="id_user")
+    @JoinColumn(name = "id_user")
+    @JsonBackReference
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="id_discussion")
+    @JoinColumn(name = "id_discussion")
     private Discussion discussion;
 
+    @Column(nullable = false)
     private ROLE role;
+
+    @Column(nullable = false)
+    private Date addedToDiscussion = new Date();
+
+    @Column(nullable = true)
+    private Date removedFromDiscussion = null;
 
     public static enum ROLE {
         Owner, Nothing
@@ -67,5 +78,21 @@ public class DiscussionGroup implements Serializable {
 
     public void setRole(ROLE role) {
         this.role = role;
+    }
+
+    public Date getAddedToDiscussion() {
+        return addedToDiscussion;
+    }
+
+    public void setAddedToDiscussion(Date addedToDiscussion) {
+        this.addedToDiscussion = addedToDiscussion;
+    }
+
+    public Date getRemovedFromDiscussion() {
+        return removedFromDiscussion;
+    }
+
+    public void setRemovedFromDiscussion(Date removedFromDiscussion) {
+        this.removedFromDiscussion = removedFromDiscussion;
     }
 }

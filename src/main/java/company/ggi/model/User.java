@@ -1,5 +1,7 @@
 package company.ggi.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -13,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USERS")
-public class User  implements Serializable{
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +24,13 @@ public class User  implements Serializable{
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String userName;
 
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String email;
     private Date birthDay;
     private Date registration;
@@ -43,7 +45,14 @@ public class User  implements Serializable{
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonManagedReference
+    private List<DiscussionGroup> discussionGroups = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Bet> bets = new ArrayList<Bet>();
+
+    public User() {
+    }
 
     public User(String lastName, String userName, String firstName, String email, Date birthDay) {
         this.lastName = lastName;
@@ -57,7 +66,36 @@ public class User  implements Serializable{
         this.credit = 5.0;
     }
 
-    public User() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public void setRegistration(Date registration) {
+        this.registration = registration;
+    }
+
+    public void setCredit(Double credit) {
+        this.credit = credit;
     }
 
     public Integer getId(){
@@ -98,6 +136,14 @@ public class User  implements Serializable{
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<DiscussionGroup> getDiscussionGroups() {
+        return discussionGroups;
+    }
+
+    public void setDiscussionGroups(List<DiscussionGroup> discussionGroups) {
+        this.discussionGroups = discussionGroups;
     }
 
     public UserGroup getUserGroup() {

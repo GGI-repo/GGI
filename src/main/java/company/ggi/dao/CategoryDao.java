@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface CategoryDao extends JpaRepository<Category, Integer> {
 	Category findByName(String name);
+
 }
