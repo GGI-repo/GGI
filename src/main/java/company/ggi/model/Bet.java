@@ -26,6 +26,7 @@ public class Bet implements Serializable {
     @JoinColumn(name="id_user")
     private User user;
 
+    public Bet() { }
     public Bet(int credit) {
         this.credit = credit;
     }

@@ -29,6 +29,9 @@ public class Comment implements Serializable {
     @JoinColumn(name="id_user")
     private User user;
 
+    public Comment(){
+    }
+
     public Comment(String content, Date commentDate) {
         this.content = content;
         this.commentDate = commentDate;

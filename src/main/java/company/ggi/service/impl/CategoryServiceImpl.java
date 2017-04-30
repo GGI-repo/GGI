@@ -94,7 +94,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional(rollbackFor = CategoryException.class)
     public Category findById(int id) throws Exception {
 
-        logger.info("Trying to find a category bu it's id ");
+        logger.info("Trying to find a category by it's id ");
         Category category = categoryRepository.findOne(id);
 
         if (category == null) {
@@ -109,7 +109,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional(rollbackFor = CategoryException.class)
     public Category findByName(String name) throws Exception {
 
-        logger.info("Trying to find a category bu it's name ");
+        logger.info("Trying to find a category by it's name ");
         Category category = categoryRepository.findByName(name);
 
         if (category == null) {
