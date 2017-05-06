@@ -45,7 +45,7 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
 
         logger.info("Trying to create a discussion group");
 
-        // getting users
+        // getting users TODO replace getAllUserInformation by findAllUsers
         users = this.getAllUsersInformation(users);
 
         Date date = new Date();
