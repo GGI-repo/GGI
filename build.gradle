@@ -31,5 +31,7 @@ dependencies {
 	compile('org.springframework.security.oauth:spring-security-oauth2')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-web-services')
+	compile('com.github.springtestdbunit:spring-test-dbunit:1.1.0')
+	compile('org.dbunit:dbunit:2.5.0')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
