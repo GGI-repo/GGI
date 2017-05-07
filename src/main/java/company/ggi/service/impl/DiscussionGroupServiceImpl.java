@@ -2,13 +2,13 @@ package company.ggi.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import company.ggi.dao.DiscussionGroupDao;
-import company.ggi.dao.UserDao;
 import company.ggi.exception.DiscussionGroupException;
 import company.ggi.model.Discussion;
 import company.ggi.model.DiscussionGroup;
 import company.ggi.model.User;
 import company.ggi.service.DiscussionGroupService;
 import company.ggi.service.DiscussionService;
+import company.ggi.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
     private DiscussionGroupDao discussionGroupRepository;
 
     @Resource
-    private UserDao userDao;
+    private UserService userService;
 
     @Autowired
     private DiscussionService discussionService;
@@ -45,7 +45,7 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
 
         logger.info("Trying to create a discussion group");
 
-        // getting users TODO replace getAllUserInformation by findAllUsers
+        // getting users
         users = this.getAllUsersInformation(users);
 
         Date date = new Date();
@@ -53,6 +53,7 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
 
         // create the discussion
         Discussion discussion = new Discussion();
+        // TODO discussion title take always name of owner user
         discussion.setTitle("");
         discussion.setCreationDate(date);
         discussion = discussionService.create(discussion);
@@ -129,11 +130,12 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
         return false;
     }
 
-    private List<User> getAllUsersInformation (List<User> users) throws Exception{
+    private List<User> getAllUsersInformation (List<User> users) throws Exception {
 
-        List<User> realUsers = new ArrayList<User>();
+        List<User> realUsers = new ArrayList<>();
         for(User user : users ) {
-            realUsers.add(userDao.findOne(user.getId()));
+            User userToAdd = userService.getUserById(user.getId());
+            realUsers.add(userToAdd);
         }
         return realUsers;
     }

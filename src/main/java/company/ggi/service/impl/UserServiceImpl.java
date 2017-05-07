@@ -74,4 +74,18 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
         return user;
     }
+
+    @Override
+    public User getUserById(Integer id) throws Exception {
+        if(null == id){
+            logger.debug("User id is null");
+            throw new Exception(UserException.USER_NOT_FOUND);
+        }
+        User user = userRepository.findOne(id);
+        if(null == user){
+            logger.debug("User not found");
+            throw new Exception(UserException.USER_NOT_FOUND);
+        }
+        return user;
+    }
 }

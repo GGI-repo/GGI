@@ -13,4 +13,6 @@ public interface UserService {
     User createUser(User newUser) throws Exception;
 
     User getUserByName(String name) throws Exception;
+
+    User getUserById(Integer id) throws Exception;
 }
