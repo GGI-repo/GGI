@@ -5,6 +5,7 @@ import company.ggi.dao.UserDao;
 import company.ggi.exception.UserException;
 import company.ggi.model.User;
 import company.ggi.service.UserService;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public User createUser(User newUser) throws Exception {
+
+        if(null == newUser){
+            logger.debug("Can't create user if user object is null");
+            throw new Exception(UserException.USER_OBJECT_NULL);
+        }
         User isAlreadyUser = userRepository.findByEmail(newUser.getEmail());
 
         if(isAlreadyUser!=null){
@@ -65,6 +71,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public User getUserByName(String name) throws Exception {
+        if (null == name){
+            logger.debug("Can't find user by name object null");
+            throw new Exception(UserException.USER_OBJECT_NULL);
+        }
         User user = userRepository.findByName(name);
 
         if(user == null) {
@@ -88,4 +98,38 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
         return user;
     }
+
+    @Override
+    public User update(User user) throws Exception {
+        if(null == user){
+            throw new Exception(UserException.USER_OBJECT_NULL);
+        }
+        if (null == user.getId()){
+            logger.debug("user id is null");
+            throw new Exception(UserException.USER_OBJECT_NULL);
+        }
+        User userToUpdate = userRepository.findOne(user.getId());
+
+        if (null == userToUpdate){
+            logger.debug("Can't update user if not found");
+            throw new Exception(UserException.USER_NOT_FOUND);
+        }
+        userToUpdate = userRepository.save(user);
+
+        return userToUpdate;
+    }
+
+    @Override
+    public User disable(User user) throws Exception {
+        if(null == user || null == user.getId()){
+            logger.debug("Can't disable user if user object is null");
+            throw new Exception(UserException.USER_OBJECT_NULL);
+        }
+
+        user.setEnabled(false);
+        user = userRepository.save(user);
+        return user;
+    }
+
+
 }

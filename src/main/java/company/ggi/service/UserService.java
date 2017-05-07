@@ -15,4 +15,9 @@ public interface UserService {
     User getUserByName(String name) throws Exception;
 
     User getUserById(Integer id) throws Exception;
+
+    User update(User user) throws Exception;
+
+    // add user to black list instead of delete
+    User disable(User user) throws Exception;
 }

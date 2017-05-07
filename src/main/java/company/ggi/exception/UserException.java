@@ -9,6 +9,7 @@ public class UserException extends Exception {
     public static final String NOT_ENOUGH_USERS = "No user found";
     public static final String USER_ALREADY_EXISTS = "User already exists";
     public static final String USER_NOT_CREATED = "User not created";
+    public static final String USER_OBJECT_NULL = "User object is null";
 
     private String message;
 

@@ -64,5 +64,4 @@ public class Game implements Serializable {
         this.discription = discription;
         this.category = category;
     }
-
 }
