@@ -1,10 +1,9 @@
 package company.ggi.controller;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import company.ggi.model.Bet;
-import company.ggi.service.BetService;
+import company.ggi.model.Comment;
+import company.ggi.service.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +18,28 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 /**
- * Created by etudiant on 02/04/17.
+ * Created by Adam on 06/05/2017.
  */
+
 @RestController
-@RequestMapping(value = "/bet")
-public class betController {
+@RequestMapping(value = "/comment")
+public class commentController {
 
     @Autowired
-    private BetService betService;
+    private CommentService commentService;
 
     private ObjectMapper mapper = new ObjectMapper();
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity findAllBets(@ModelAttribute Bet bet,
-                                            final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
-        logger.info("Controller find all bet called");
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity findAllComments(@ModelAttribute Comment comment,
+                                      final RedirectAttributes redirectAttributes) throws JsonProcessingException {
+
+        logger.info("Controller find all comments called");
         try {
-            List<Bet> listBet = betService.findAll();
-            return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(listBet));
+            List<Comment> listComment = commentService.findAll();
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(listComment));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mapper.writeValueAsString(e));
@@ -46,12 +47,12 @@ public class betController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity createNewCategory(@ModelAttribute Bet bet,
+    public ResponseEntity createNewCategory(@ModelAttribute Comment comment,
                                             final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
-        logger.info("Controller create bet called");
+        logger.info("Controller create comment called");
         try {
-            Bet result =  betService.create(bet);
+            Comment result =  commentService.create(comment);
             return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(result));
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,12 +61,12 @@ public class betController {
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.GET)
-    public ResponseEntity findCategory(@ModelAttribute int idBet,
+    public ResponseEntity findCategory(@ModelAttribute int idComment,
                                        final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
-        logger.info("controller find bet called");
+        logger.info("controller find comment called");
         try {
-            Bet  found = betService.findById(idBet);
+            Comment found =  commentService.findById(idComment);
             return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(found));
         } catch (Exception e) {
             e.printStackTrace();

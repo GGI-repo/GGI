@@ -23,15 +23,13 @@ import java.util.Date;
 public class CommentTest {
     private Comment commentTest;
     private String commentContentTest;
-    private Date commentDateTest;
     private User user;
 
     @Before
     public void setUp(){
         commentContentTest =  " my content test";
-        commentDateTest = new Date();
         user = new User("LastName", "UserName", "FirstName", "test.example@email.com", new Date(20100222));
-        commentTest = new Comment(commentContentTest,commentDateTest, new Party(),user);
+        commentTest = new Comment(commentContentTest, new Party(),user);
     }
 
     @Test
@@ -46,7 +44,7 @@ public class CommentTest {
 
     @Test
     public void commentDateGetterTest(){
-        Assert.assertEquals("Comment date incorrect",commentDateTest, commentTest.getCommentDate() );
+        Assert.assertEquals( new Date(), commentTest.getCommentDate() );
     }
 
     @Test

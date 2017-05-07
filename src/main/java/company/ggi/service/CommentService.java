@@ -8,13 +8,13 @@ import java.util.List;
  */
 public interface CommentService  {
 
-    public Comment create(Comment category) throws Exception;
+    public Comment create(Comment comment) throws Exception;
 
     public Comment delete(int id) throws Exception;
 
     public List<Comment> findAll();
 
-    public Comment update(Comment category) throws Exception;
+    public Comment update(Comment comment) throws Exception;
 
     public Comment findById(int id) throws Exception;
 

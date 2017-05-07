@@ -32,14 +32,9 @@ public class Comment implements Serializable {
     public Comment(){
     }
 
-    public Comment(String content, Date commentDate) {
+    public Comment(String content, Party party, User user) {
         this.content = content;
-        this.commentDate = commentDate;
-    }
-
-    public Comment(String content, Date commentDate, Party party, User user) {
-        this.content = content;
-        this.commentDate = commentDate;
+        this.commentDate = new Date();
         this.party = party;
         this.user = user;
     }

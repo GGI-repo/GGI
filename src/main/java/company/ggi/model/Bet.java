@@ -27,9 +27,6 @@ public class Bet implements Serializable {
     private User user;
 
     public Bet() { }
-    public Bet(int credit) {
-        this.credit = credit;
-    }
 
     public Bet(int credit, Party party, User user) {
         this.credit = credit;

@@ -80,13 +80,13 @@ public class CategoryServiceTest {
     }
 
     @Test(expected = CategoryException.class)
-    public void testDeleteCategoryWithException() throws Exception {
+    public void deleteCategoryWithExceptionTest() throws Exception {
 
         categoryService.delete(-1);
     }
 
     @Test
-    public void testFindCategoryById() throws Exception {
+    public void findCategoryByIdTest() throws Exception {
 
         Category found = categoryService.findById(categoryDao.findAll().get(0).getId());
         Assert.assertTrue(found.getName().equals(categoryDao.findAll().get(0).getName()));
@@ -94,13 +94,13 @@ public class CategoryServiceTest {
     }
 
     @Test(expected = CategoryException.class)
-    public void testFindCategoryByIdWithException() throws Exception {
+    public void findCategoryByIdWithExceptionTest() throws Exception {
 
         categoryService.findById(-1);
     }
 
     @Test
-    public void testFindCategoryByName() throws Exception {
+    public void findCategoryByNameTest() throws Exception {
 
         Category found = categoryService.findByName(name);
         Assert.assertNotNull(found);
@@ -109,7 +109,7 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testUpdateCategory() throws Exception {
+    public void updateCategoryTest() throws Exception {
 
         Category test = categoryDao.findAll().get(0);
         test.setName("TestName");
@@ -119,7 +119,7 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testFindAll() {
+    public void findAllTest() {
 
         Assert.assertEquals(categoryService.findAll().size(), categoryDao.findAll().size());
         Assert.assertFalse(categoryService.findAll().isEmpty());

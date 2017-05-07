@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class CommentException extends  Exception implements Serializable {
     public static final String COMMENT_NOT_FOUND = "Comment not found";
+    public static final String COMMENT_WITH_NULL_VALUE = "Comment with null value";
     public static final String COMMENT_WITH_NULL_CONTENT = "Comment content is null";
 
     private String message;

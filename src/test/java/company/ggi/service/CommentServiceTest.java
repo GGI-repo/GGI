@@ -1,7 +1,12 @@
-package company.ggi.dao;
+package company.ggi.service;
 
+import company.ggi.dao.*;
+import company.ggi.exception.CommentException;
 import company.ggi.model.*;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -9,11 +14,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Date;
 
 /**
- * Created by Adam on 29/04/2017.
+ * Created by Adam on 01/05/2017.
  */
 
 @RunWith(SpringRunner.class)
@@ -21,7 +27,7 @@ import java.util.Date;
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {company.ggi.config.WebAppConfig.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @SuppressWarnings("SpringJavaAutowiringInspection")
-public class CommentDaoTest {
+public class CommentServiceTest {
 
     @Autowired
     private CommentDao commentDaoTest;
@@ -38,6 +44,9 @@ public class CommentDaoTest {
     @Autowired
     private CategoryDao categoryDaoTest;
 
+    @Autowired
+    private CommentService commentService;
+
     private User user;
     private Category category;
     private Game game;
@@ -45,7 +54,6 @@ public class CommentDaoTest {
     private Comment commentTest;
     private String content;
     private Date date;
-
 
 
     @Before
@@ -68,29 +76,47 @@ public class CommentDaoTest {
 
         commentTest = new Comment(content,party,user);
         commentTest = commentDaoTest.save(commentTest);
+
+        ReflectionTestUtils.setField(commentService, "commentRepository", commentDaoTest);
     }
 
     @Test
-    public void commentSaveDaoTest(){
-        Assert.assertNotNull(commentTest);
-        Assert.assertEquals(1, commentDaoTest.findAll().size());
+    public void  commentSaveServiceTest() throws Exception {
+        int countRes = commentDaoTest.findAll().size();
+        Assert.assertEquals(1,countRes);
+
+        commentService.create(new Comment("content test",party,user));
+        Assert.assertEquals(countRes + 1,commentService.findAll().size() );
+    }
+
+    @Test(expected = CommentException.class)
+    public void  commentSaveServiceWithExceptionTest() throws Exception {
+        commentService.create(new Comment("",party,user));
+    }
+
+    @Test(expected = CommentException.class)
+    public void  commentFindByIdServiceWithExceptionTest() throws Exception {
+        commentService.findById(5);
     }
 
     @Test
-    public void commentDaoUpdateTest(){
-        String newComment = " a nother comment";
-        commentTest.setContent(newComment);
-        commentTest = commentDaoTest.save(commentTest);
+    public void  commentUpdateServiceTest() throws Exception {
+        String newContent = "new content";
+        commentTest.setContent(newContent);
+        commentService.update(commentTest);
 
-        Assert.assertEquals(newComment,commentTest.getContent() );
+        Assert.assertEquals(newContent,commentService.findById(commentTest.getId()).getContent()); // comment content change
     }
 
     @Test
-    public void commentDaoDeleteTest() {
-        commentDaoTest.delete(commentTest);
+    public void  commentDeleteServiceTest() throws Exception {
+        commentService.delete(commentTest.getId());
+        Assert.assertTrue(commentService.findAll().isEmpty());
+    }
 
-        Assert.assertTrue(commentDaoTest.findAll().isEmpty());
-        Assert.assertNull(commentDaoTest.findOne(commentTest.getId()));
+    @Test(expected = CommentException.class)
+    public void  commentDeleteServiceWithExceptionTest() throws Exception {
+        commentService.delete(7);
     }
 
     @After
@@ -101,5 +127,4 @@ public class CommentDaoTest {
         gameDaoTest.deleteAll();
         categoryDaoTest.deleteAll();
     }
-
 }
