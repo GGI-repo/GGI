@@ -34,8 +34,10 @@ public class UserController {
             result = userService.createUser(newUser);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.debug("Failed to create user "+mapper.writeValueAsString(e));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mapper.writeValueAsString(e));
         }
+        logger.debug("Success user created "+mapper.writeValueAsString(result.getUserName()));
         return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(result));
     }
 }

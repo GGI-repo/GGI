@@ -107,7 +107,4 @@ public class CategoryController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mapper.writeValueAsString(e));
         }
     }
-
-
-
 }
