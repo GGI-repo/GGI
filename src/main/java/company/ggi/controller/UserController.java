@@ -13,22 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by Benmoumen on 07/05/2017.
  */
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/user")
 public class UserController {
     @Autowired
-    UserService userService;
+    private UserService userService;
     private ObjectMapper mapper = new ObjectMapper();
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/user/signin", method = RequestMethod.POST)
-    public ResponseEntity addUser(@RequestBody User newUser, final
-                                  RedirectAttributes redirectAttributes) throws JsonProcessingException {
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    public ResponseEntity addUser(@RequestBody User newUser) throws JsonProcessingException {
         User result;
         try {
             result = userService.createUser(newUser);
