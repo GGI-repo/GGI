@@ -57,7 +57,7 @@ public class GameController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity add(@RequestBody Game game) throws JsonProcessingException{
+    public ResponseEntity create(@RequestBody Game game) throws JsonProcessingException{
 
         try {
             game = gameService.create(game);
