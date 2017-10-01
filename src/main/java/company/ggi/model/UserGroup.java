@@ -26,8 +26,11 @@ public class UserGroup implements Serializable {
 
     private Double credit;
 
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "userGroup")
-    //private List<User> comments = new ArrayList<User>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "group_details",
+            joinColumns = {@JoinColumn(name = "id_users")},
+            inverseJoinColumns = {@JoinColumn(name = "id_userGroup")})
+    private List<User> userList = new ArrayList<>();
 
     public UserGroup() {
     }
@@ -36,6 +39,21 @@ public class UserGroup implements Serializable {
         this.name = name;
         this.creationDate = creation_date;
         this.credit = credit;
+    }
+
+    public UserGroup(String name, Date creation_date, Double credit, List<User> userList) {
+        this.name = name;
+        this.creationDate = creation_date;
+        this.credit = credit;
+        this.userList = userList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public String getName() {

@@ -29,6 +29,7 @@ public class User implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_users")
     private Integer id;
 
     @Column(nullable = false)
@@ -58,6 +59,9 @@ public class User implements Serializable, UserDetails {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userList")
+    private List<UserGroup> userGroups = new ArrayList<>();
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @JsonManagedReference
     private List<DiscussionGroup> discussionGroups = new ArrayList<>();
@@ -75,6 +79,27 @@ public class User implements Serializable, UserDetails {
         this.registration = new Date();
         dateFormat.format(this.registration);
         this.credit = 5.0;
+    }
+
+    public User(String lastName, String userName, String firstName, String email, Date birthDay, List<UserGroup> userGroups) {
+        this.lastName = lastName;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.email = email;
+        this.birthDay = birthDay;
+        DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY HH:mm:ss");
+        this.registration = new Date();
+        dateFormat.format(this.registration);
+        this.credit = 5.0;
+        this.userGroups = userGroups;
+    }
+
+    public List<UserGroup> getUserGroups() {
+        return userGroups;
+    }
+
+    public void setUserGroups(List<UserGroup> userGroups) {
+        this.userGroups = userGroups;
     }
 
     public void setId(Integer id) {

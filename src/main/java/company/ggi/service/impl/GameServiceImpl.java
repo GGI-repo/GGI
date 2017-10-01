@@ -11,12 +11,14 @@ import company.ggi.service.GameService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by Benmoumen on 07/05/2017.
  */
+@Service
 public class GameServiceImpl implements GameService {
 
     @Autowired
@@ -28,7 +30,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game create(Game newGame) throws Exception {
-        if (null == newGame){
+        if (null == newGame) {
             throw new Exception(GameException.GAME_OBJECT_NULL);
         }
 
@@ -54,34 +56,31 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game update(Game game) throws Exception {
-        if( null == game || null == game.getId()){
+        if (null == game || null == game.getId()) {
             logger.error("game object is null");
             throw new Exception(GameException.GAME_OBJECT_NULL);
         }
 
         if (null == game.getCategory()) {
-        Category category = game.getCategory();
-
-        if(null == category || null == category.getId()){
-            logger.error("Can't update game if category object is null");
-            throw new Exception(GameException.GAME_OBJECT_NULL);
-        }else{
-            category = categoryRepository.findOne(category.getId());
-            if(null == category ){
-                logger.error("Can't update game if category doesn't exists");
-                throw  new Exception(CategoryException.CATEGORY_NOT_FOUND);
+                logger.error("Can't update game if category object is null");
+                throw new Exception(GameException.GAME_OBJECT_NULL);
+            } else {
+                Category category = categoryRepository.findOne(game.getCategory().getId());
+                if (null == category) {
+                    logger.error("Can't update game if category doesn't exists");
+                    throw new Exception(CategoryException.CATEGORY_NOT_FOUND);
+                }
             }
-        }
-        Game gameToUpdate = gameRepository.findOne(game.getId());
+            Game gameToUpdate = gameRepository.findOne(game.getId());
 
-        if (null == gameToUpdate) {
-            logger.error("can't update user if doesn't exists " + mapper.writeValueAsString(game));
-            throw new Exception(GameException.GAME_NOT_FOUND);
-        }
-        gameToUpdate = gameRepository.save(game);
+            if (null == gameToUpdate) {
+                logger.error("can't update user if doesn't exists " + mapper.writeValueAsString(game));
+                throw new Exception(GameException.GAME_NOT_FOUND);
+            }
+            gameToUpdate = gameRepository.save(game);
 
-        return gameToUpdate;
-    }
+            return gameToUpdate;
+        }
 
     @Override
     public List<Game> findAll() throws Exception {
@@ -120,14 +119,14 @@ public class GameServiceImpl implements GameService {
 
         Category category = game.getCategory();
 
-        if(null == category || null == category.getId()){
+        if (null == category || null == category.getId()) {
             logger.error("Can't delete game if category object is null");
             throw new Exception(GameException.GAME_OBJECT_NULL);
-        }else{
+        } else {
             category = categoryRepository.findOne(category.getId());
-            if(null == category ){
+            if (null == category) {
                 logger.error("Can't delete game if category doesn't exists");
-                throw  new Exception(CategoryException.CATEGORY_NOT_FOUND);
+                throw new Exception(CategoryException.CATEGORY_NOT_FOUND);
             }
         }
 
