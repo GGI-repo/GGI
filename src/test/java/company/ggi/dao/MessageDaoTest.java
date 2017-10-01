@@ -108,7 +108,7 @@ public class MessageDaoTest {
     }
 
     @Test
-    public void  messageDaoDeleteTest() {
+    public void messageDaoDeleteTest() {
 
         messageDao.delete(message.getId());
         Assert.assertNull(messageDao.findOne(message.getId()));

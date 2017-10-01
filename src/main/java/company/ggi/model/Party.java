@@ -26,11 +26,12 @@ public class Party implements Serializable {
     private String GroupName;
 
     @OneToOne
-    @JoinColumn(name="id_game")
+    @JoinColumn(name = "id_game")
     private Game game;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "party")
-    private List<Comment> comments = new ArrayList<Comment>();;
+    private List<Comment> comments = new ArrayList<Comment>();
+    ;
 
     public Integer getId() {
         return id;

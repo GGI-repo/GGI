@@ -26,31 +26,31 @@ public class GameTest {
     private Category gameCategoryTest;
 
     @Before
-    public void Up(){
+    public void Up() {
 
-        gameNameTest="My game Test";
-        gameDescriptionTest="My description for test";
+        gameNameTest = "My game Test";
+        gameDescriptionTest = "My description for test";
         gameCategoryTest = new Category();
-        gameTest = new Game(gameNameTest,gameDescriptionTest,gameCategoryTest);
+        gameTest = new Game(gameNameTest, gameDescriptionTest, gameCategoryTest);
     }
 
     @Test
-    public void gameConstructorTest(){
+    public void gameConstructorTest() {
         Assert.assertNotNull(gameTest);
     }
 
     @Test
-    public void gameNameGetterTest(){
+    public void gameNameGetterTest() {
         Assert.assertEquals(gameNameTest, gameTest.getName());
     }
 
     @Test
-    public void gameDescriptionGetterTest(){
+    public void gameDescriptionGetterTest() {
         Assert.assertEquals(gameDescriptionTest, gameTest.getDiscription());
     }
 
     @Test
-    public void gameCategoryGetterTest(){
+    public void gameCategoryGetterTest() {
         Assert.assertEquals(gameCategoryTest, gameTest.getCategory());
     }
 }

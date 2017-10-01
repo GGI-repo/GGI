@@ -49,7 +49,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity createNewCategory(@ModelAttribute Category category,
-                                    final RedirectAttributes redirectAttributes) throws JsonProcessingException {
+                                            final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
         logger.info("Service create category called");
         try {
@@ -63,7 +63,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public ResponseEntity updateCategory(@ModelAttribute Category category,
-                                    final RedirectAttributes redirectAttributes) throws JsonProcessingException {
+                                         final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
         logger.info("Service update category called");
         try {
@@ -91,12 +91,12 @@ public class CategoryController {
 
     @RequestMapping(value = "/find", method = RequestMethod.GET)
     public ResponseEntity findCategory(@ModelAttribute Category category,
-                                         final RedirectAttributes redirectAttributes) throws JsonProcessingException {
+                                       final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
         logger.info("Service find category called");
         try {
             Category found;
-            if(category.getId() != null)
+            if (category.getId() != null)
                 found = categoryService.findById(category.getId());
             else found = categoryService.findByName(category.getName());
 

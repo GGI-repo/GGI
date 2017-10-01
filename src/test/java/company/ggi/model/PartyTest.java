@@ -26,42 +26,42 @@ public class PartyTest {
     private Party partyTest;
     private String partyNameTest;
     private String partyDescriptionTest;
-    private Date  partyStartingDateTest;
+    private Date partyStartingDateTest;
     private String partyNameGroupTest;
     private Game game;
 
     @Before
-    public void Up(){
-        partyNameTest="My party Test";
-        partyDescriptionTest= "My party description Test";
+    public void Up() {
+        partyNameTest = "My party Test";
+        partyDescriptionTest = "My party description Test";
         partyStartingDateTest = Calendar.getInstance().getTime();
-        partyNameGroupTest="party group name";
+        partyNameGroupTest = "party group name";
         game = new Game();
         partyTest = new Party(partyNameTest, partyDescriptionTest, partyStartingDateTest, partyNameGroupTest, game);
     }
 
     @Test
-    public void partyConstructorTest(){
+    public void partyConstructorTest() {
         Assert.assertNotNull(partyTest);
     }
 
     @Test
-    public void partyPartyNameGetterTest(){
+    public void partyPartyNameGetterTest() {
         Assert.assertEquals(partyTest.getName(), partyNameTest);
     }
 
     @Test
-    public void partyDescriptionGetterTest(){
+    public void partyDescriptionGetterTest() {
         Assert.assertEquals(partyTest.getDescription(), partyDescriptionTest);
     }
 
     @Test
-    public void partyGroupNameGetterTest(){
+    public void partyGroupNameGetterTest() {
         Assert.assertEquals(partyTest.getGroupName(), partyNameGroupTest);
     }
 
     @Test
-    public void partyGameGetterTest(){
+    public void partyGameGetterTest() {
         Assert.assertEquals(partyTest.getGame(), game);
     }
 }

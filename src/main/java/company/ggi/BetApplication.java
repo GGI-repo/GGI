@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BetApplication extends WebSecurityConfigurerAdapter {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BetApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BetApplication.class, args);
+    }
 
 
 }

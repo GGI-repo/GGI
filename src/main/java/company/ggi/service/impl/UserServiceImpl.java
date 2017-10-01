@@ -24,23 +24,23 @@ import java.util.List;
 public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
-    private UserDao userRepository;
+    private UserDao userDao;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUserName(username);
+        return userDao.findByUserName(username);
     }
 
     @Override
     @Transactional
     public List<User> findAllUsers() throws Exception {
         List<User> userList;
-        userList = userRepository.findAll();
+        userList = userDao.findAll();
         if (userList.isEmpty()) {
-            logger.debug("User list is empty "+mapper.writeValueAsString(userList));
-            throw new Exception(UserException.NOT_ENOUGH_USERS );
+            logger.debug("User list is empty " + mapper.writeValueAsString(userList));
+            throw new Exception(UserException.NOT_ENOUGH_USERS);
         }
         return userList;
     }
@@ -48,18 +48,18 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User createUser(User newUser) throws Exception {
 
-        if(null == newUser){
+        if (null == newUser) {
             logger.debug("Can't create user if user object is null");
             throw new Exception(UserException.USER_OBJECT_NULL);
         }
-        User isAlreadyUser = userRepository.findByEmail(newUser.getEmail());
+        User isAlreadyUser = userDao.findByEmail(newUser.getEmail());
 
-        if(isAlreadyUser!=null){
-            logger.debug("This user already exists : "+mapper.writeValueAsString(isAlreadyUser));
+        if (isAlreadyUser != null) {
+            logger.debug("This user already exists : " + mapper.writeValueAsString(isAlreadyUser));
             throw new Exception(UserException.USER_ALREADY_EXISTS);
         }
 
-        User user = userRepository.saveAndFlush(newUser);
+        User user = userDao.saveAndFlush(newUser);
 
         if (user == null) {
             logger.debug("Can't create user : ");
@@ -70,15 +70,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User getUserByName(String name) throws Exception {
-        if (null == name){
+    public User getUserByName(String firstName, String lastName) throws Exception {
+        if (firstName == null || lastName == null) {
             logger.debug("Can't find user by name object null");
             throw new Exception(UserException.USER_OBJECT_NULL);
         }
-        User user = userRepository.findByName(name);
+        User user = userDao.findByFirstNameAndLastName(firstName, lastName);
 
-        if(user == null) {
-            logger.debug("user not found : " + mapper.writeValueAsString(name));
+        if (user == null) {
+            logger.debug("user not found : " + mapper.writeValueAsString(firstName + " " + lastName));
             throw new Exception(UserException.USER_NOT_FOUND);
         }
 
@@ -87,12 +87,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public User getUserById(Integer id) throws Exception {
-        if(null == id){
+        if (null == id) {
             logger.debug("User id is null");
             throw new Exception(UserException.USER_NOT_FOUND);
         }
-        User user = userRepository.findOne(id);
-        if(null == user){
+        User user = userDao.findOne(id);
+        if (null == user) {
             logger.debug("User not found");
             throw new Exception(UserException.USER_NOT_FOUND);
         }
@@ -101,33 +101,33 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public User update(User user) throws Exception {
-        if(null == user){
+        if (null == user) {
             throw new Exception(UserException.USER_OBJECT_NULL);
         }
-        if (null == user.getId()){
+        if (null == user.getId()) {
             logger.debug("user id is null");
             throw new Exception(UserException.USER_OBJECT_NULL);
         }
-        User userToUpdate = userRepository.findOne(user.getId());
+        User userToUpdate = userDao.findOne(user.getId());
 
-        if (null == userToUpdate){
+        if (null == userToUpdate) {
             logger.debug("Can't update user if not found");
             throw new Exception(UserException.USER_NOT_FOUND);
         }
-        userToUpdate = userRepository.save(user);
+        userToUpdate = userDao.save(user);
 
         return userToUpdate;
     }
 
     @Override
     public User disable(User user) throws Exception {
-        if(null == user || null == user.getId()){
+        if (null == user || null == user.getId()) {
             logger.debug("Can't disable user if user object is null");
             throw new Exception(UserException.USER_OBJECT_NULL);
         }
 
         user.setEnabled(false);
-        user = userRepository.save(user);
+        user = userDao.save(user);
         return user;
     }
 

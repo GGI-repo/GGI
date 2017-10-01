@@ -32,15 +32,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public Category create(Category category) throws Exception{
+    public Category create(Category category) throws Exception {
 
         logger.info("Trying to create a category");
         Category newCategory = category;
 
-        if(newCategory == null || newCategory.getName() == null )
+        if (newCategory == null || newCategory.getName() == null)
             throw new CategoryException(CategoryException.CATEGORY_WITH_NULL_NAME);
 
-        if(categoryRepository.findByName(newCategory.getName()) != null )
+        if (categoryRepository.findByName(newCategory.getName()) != null)
             throw new CategoryException(CategoryException.CATEGORY_EXISTS);
 
         return categoryRepository.save(newCategory);
@@ -82,7 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new CategoryException(CategoryException.CATEGORY_NOT_FOUND);
         }
 
-        if(categoryToUpdate.getName() == null )
+        if (categoryToUpdate.getName() == null)
             throw new CategoryException(CategoryException.CATEGORY_WITH_NULL_NAME);
 
         categoryToUpdate.setName(category.getName());

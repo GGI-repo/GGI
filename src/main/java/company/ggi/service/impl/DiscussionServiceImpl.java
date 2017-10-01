@@ -17,7 +17,7 @@ import java.util.List;
  * Created by ismail ELFAQIR on 22/04/2017.
  */
 @Service
-public class DiscussionServiceImpl implements DiscussionService{
+public class DiscussionServiceImpl implements DiscussionService {
 
     @Resource
     private DiscussionDao discussionRepository;

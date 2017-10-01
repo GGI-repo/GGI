@@ -49,9 +49,9 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Value("${ggi.oauth.adminsPassword}")
     private String adminsPassword;
 
-    public static final String PUBLIC_RESOURCES="public-resources";
-    public static final String ADMIN_RESOURCES="admin-resources";
-    public static final String USER_RESOURCES="user-resources";
+    public static final String PUBLIC_RESOURCES = "public-resources";
+    public static final String ADMIN_RESOURCES = "admin-resources";
+    public static final String USER_RESOURCES = "user-resources";
 
     @Bean
     public PasswordEncoder passwordEncoder() {

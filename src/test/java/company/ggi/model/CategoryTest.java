@@ -22,19 +22,20 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class CategoryTest {
     private Category categoryTest;
     private String categoryNameTest;
+
     @Before
-    public void setUp(){
-        categoryNameTest= "My category for test";
+    public void setUp() {
+        categoryNameTest = "My category for test";
         categoryTest = new Category(categoryNameTest);
     }
 
     @Test
-    public void categoryConstructorTest(){
+    public void categoryConstructorTest() {
         Assert.assertNotNull(categoryTest);
     }
 
     @Test
-    public void categoryNameGetterTest(){
+    public void categoryNameGetterTest() {
         Assert.assertTrue(categoryTest.getName().equals(categoryNameTest));
     }
 }
