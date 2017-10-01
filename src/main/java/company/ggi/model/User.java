@@ -1,18 +1,14 @@
 package company.ggi.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.joda.time.DateTime;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,9 +19,7 @@ import java.util.List;
 public class User implements Serializable, UserDetails {
     public static enum ROLE {
         ADMIN, USER
-    }
-
-    ;
+    };
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,9 +40,9 @@ public class User implements Serializable, UserDetails {
     @Column(unique = true)
     private String email;
 
-    private Date birthDay;
+    private DateTime birthDay;
 
-    private Date registration;
+    private DateTime registration;
 
     private Double credit;
 
@@ -69,27 +63,23 @@ public class User implements Serializable, UserDetails {
     public User() {
     }
 
-    public User(String lastName, String userName, String firstName, String email, Date birthDay) {
+    public User(String lastName, String userName, String firstName, String email, DateTime birthDay) {
         this.lastName = lastName;
         this.userName = userName;
         this.firstName = firstName;
         this.email = email;
         this.birthDay = birthDay;
-        DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY HH:mm:ss");
-        this.registration = new Date();
-        dateFormat.format(this.registration);
+        this.registration = new DateTime();
         this.credit = 5.0;
     }
 
-    public User(String lastName, String userName, String firstName, String email, Date birthDay, List<UserGroup> userGroups) {
+    public User(String lastName, String userName, String firstName, String email, DateTime birthDay, List<UserGroup> userGroups) {
         this.lastName = lastName;
         this.userName = userName;
         this.firstName = firstName;
         this.email = email;
         this.birthDay = birthDay;
-        DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY HH:mm:ss");
-        this.registration = new Date();
-        dateFormat.format(this.registration);
+        this.registration = new DateTime();
         this.credit = 5.0;
         this.userGroups = userGroups;
     }
@@ -122,11 +112,11 @@ public class User implements Serializable, UserDetails {
         this.email = email;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay(DateTime birthDay) {
         this.birthDay = birthDay;
     }
 
-    public void setRegistration(Date registration) {
+    public void setRegistration(DateTime registration) {
         this.registration = registration;
     }
 
@@ -154,11 +144,11 @@ public class User implements Serializable, UserDetails {
         return email;
     }
 
-    public Date getBirthDay() {
+    public DateTime getBirthDay() {
         return birthDay;
     }
 
-    public Date getRegistration() {
+    public DateTime getRegistration() {
         return registration;
     }
 

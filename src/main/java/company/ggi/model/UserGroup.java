@@ -1,9 +1,10 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class UserGroup implements Serializable {
     private String name;
 
     @Column(nullable = false)
-    private Date creationDate;
+    private DateTime creationDate;
 
     private Double credit;
 
@@ -35,15 +36,15 @@ public class UserGroup implements Serializable {
     public UserGroup() {
     }
 
-    public UserGroup(String name, Date creation_date, Double credit) {
+    public UserGroup(String name, Double credit) {
         this.name = name;
-        this.creationDate = creation_date;
+        this.creationDate = new DateTime();
         this.credit = credit;
     }
 
-    public UserGroup(String name, Date creation_date, Double credit, List<User> userList) {
+    public UserGroup(String name, Double credit, List<User> userList) {
         this.name = name;
-        this.creationDate = creation_date;
+        this.creationDate = new DateTime();
         this.credit = credit;
         this.userList = userList;
     }
@@ -64,11 +65,11 @@ public class UserGroup implements Serializable {
         this.name = name;
     }
 
-    public Date getCreationDate() {
+    public DateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(DateTime creationDate) {
         this.creationDate = creationDate;
     }
 

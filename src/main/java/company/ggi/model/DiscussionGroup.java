@@ -1,14 +1,15 @@
 package company.ggi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by ismail ELFAQIR on 15/04/2017.
  */
+
 @Entity
 @Table(name = "DISCUSSIONGROUP")
 public class DiscussionGroup implements Serializable {
@@ -30,10 +31,10 @@ public class DiscussionGroup implements Serializable {
     private ROLE role;
 
     @Column(nullable = false)
-    private Date addedToDiscussion = new Date();
+    private DateTime addedToDiscussion;
 
     @Column(nullable = true)
-    private Date removedFromDiscussion = null;
+    private DateTime removedFromDiscussion;
 
     public static enum ROLE {
         Owner, Nothing
@@ -80,19 +81,19 @@ public class DiscussionGroup implements Serializable {
         this.role = role;
     }
 
-    public Date getAddedToDiscussion() {
+    public DateTime getAddedToDiscussion() {
         return addedToDiscussion;
     }
 
-    public void setAddedToDiscussion(Date addedToDiscussion) {
+    public void setAddedToDiscussion(DateTime addedToDiscussion) {
         this.addedToDiscussion = addedToDiscussion;
     }
 
-    public Date getRemovedFromDiscussion() {
+    public DateTime getRemovedFromDiscussion() {
         return removedFromDiscussion;
     }
 
-    public void setRemovedFromDiscussion(Date removedFromDiscussion) {
+    public void setRemovedFromDiscussion(DateTime removedFromDiscussion) {
         this.removedFromDiscussion = removedFromDiscussion;
     }
 }

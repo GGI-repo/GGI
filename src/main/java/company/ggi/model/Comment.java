@@ -1,5 +1,7 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,7 +20,7 @@ public class Comment implements Serializable {
     private String contenu;
 
     @Column(nullable = false)
-    private String commentDate;
+    private DateTime commentDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_party", nullable = false)
@@ -28,7 +30,7 @@ public class Comment implements Serializable {
     @JoinColumn(name = "id_user")
     private User user;
 
-    public Comment(String contenu, String commentDate) {
+    public Comment(String contenu, DateTime commentDate) {
         this.contenu = contenu;
         this.commentDate = commentDate;
     }
@@ -49,11 +51,11 @@ public class Comment implements Serializable {
         this.contenu = contenu;
     }
 
-    public String getCommentDate() {
+    public DateTime getCommentDate() {
         return commentDate;
     }
 
-    public void setCommentDate(String commentDate) {
+    public void setCommentDate(DateTime commentDate) {
         this.commentDate = commentDate;
     }
 

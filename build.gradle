@@ -33,5 +33,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web-services')
 	compile('com.github.springtestdbunit:spring-test-dbunit:1.1.0')
 	compile('org.dbunit:dbunit:2.5.0')
+	compile group: 'joda-time', name: 'joda-time', version: '2.3'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
 }

@@ -1,11 +1,11 @@
 package company.ggi.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public class Discussion implements Serializable {
     private String title;
 
     @Column(nullable = false)
-    private Date creationDate = new Date();
+    private DateTime creationDate;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "discussion")
     @JsonManagedReference
@@ -31,6 +31,7 @@ public class Discussion implements Serializable {
 
     public Discussion(String title) {
         this.title = title;
+        this.creationDate = new DateTime();
     }
 
     public Discussion() {
@@ -52,11 +53,11 @@ public class Discussion implements Serializable {
         this.title = title;
     }
 
-    public Date getCreationDate() {
+    public DateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(DateTime creationDate) {
         this.creationDate = creationDate;
     }
 
