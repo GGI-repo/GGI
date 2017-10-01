@@ -31,9 +31,9 @@ public class betController {
     private ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping("/healthcheck")
-    public ResponseEntity index() throws JsonProcessingException{
+    public ResponseEntity index() throws JsonProcessingException {
         logger.info("GET health check called ");
-        HealthCheckService healthcheck= new HealthCheckService("GGI API health check", version);
+        HealthCheckService healthcheck = new HealthCheckService("GGI API health check", version);
         try {
             return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(healthcheck));
         } catch (JsonProcessingException e) {
@@ -45,13 +45,13 @@ public class betController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ResponseEntity logout(String access_token) {
         logger.info("request to remove access token : " + access_token);
-        try{
+        try {
             if (access_token != null && access_token != "") {
                 OAuth2AccessToken accessToken = tokenStore.readAccessToken(access_token);
                 tokenStore.removeAccessToken(accessToken);
             }
             return ResponseEntity.status(HttpStatus.OK).body(null);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

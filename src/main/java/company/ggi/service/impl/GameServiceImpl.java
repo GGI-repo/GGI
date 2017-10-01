@@ -31,20 +31,20 @@ public class GameServiceImpl implements GameService {
         if (null == newGame){
             throw new Exception(GameException.GAME_OBJECT_NULL);
         }
-        Category category = newGame.getCategory();
-        if(null == category || null == category.getName()) {
-            logger.error("Can't create user if category object is null "+mapper.writeValueAsString(newGame));
+
+        if (null == newGame.getCategory()) {
+            logger.error("Can't create user if category object is null " + mapper.writeValueAsString(newGame));
             throw new Exception(GameException.GAME_OBJECT_NULL);
         }
 
-        if(null != gameRepository.findByName(newGame.getName())){
+        if (null != gameRepository.findByName(newGame.getName())) {
             logger.error("User already exists " + mapper.writeValueAsString(newGame));
             throw new Exception(GameException.GAME_ALREADY_EXISTS);
         }
         // if category doesn't exists ? create it or not ?
         Game result = gameRepository.saveAndFlush(newGame);
 
-        if(null == result){
+        if (null == result) {
             logger.error("Game is not created" + mapper.writeValueAsString(newGame));
             throw new Exception(GameException.GAME_NOT_CREATED);
         }
@@ -54,12 +54,12 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game update(Game game) throws Exception {
-
         if( null == game || null == game.getId()){
             logger.error("game object is null");
             throw new Exception(GameException.GAME_OBJECT_NULL);
         }
 
+        if (null == game.getCategory()) {
         Category category = game.getCategory();
 
         if(null == category || null == category.getId()){
@@ -72,11 +72,10 @@ public class GameServiceImpl implements GameService {
                 throw  new Exception(CategoryException.CATEGORY_NOT_FOUND);
             }
         }
-
         Game gameToUpdate = gameRepository.findOne(game.getId());
 
-        if(null == gameToUpdate){
-            logger.error("can't update user if doesn't exists "+mapper.writeValueAsString(game));
+        if (null == gameToUpdate) {
+            logger.error("can't update user if doesn't exists " + mapper.writeValueAsString(game));
             throw new Exception(GameException.GAME_NOT_FOUND);
         }
         gameToUpdate = gameRepository.save(game);
@@ -88,7 +87,7 @@ public class GameServiceImpl implements GameService {
     public List<Game> findAll() throws Exception {
         List<Game> games = gameRepository.findAll();
 
-        if(games.isEmpty()){
+        if (games.isEmpty()) {
             logger.debug("No game in database");
             throw new Exception(GameException.GAME_NO_DATA);
         }
@@ -98,13 +97,13 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game findByName(String name) throws Exception {
 
-        if(null == name){
+        if (null == name) {
             logger.error("name object is null");
             throw new Exception(GameException.GAME_OBJECT_NULL);
         }
         Game result = gameRepository.findByName(name);
 
-        if(result == null || result.getName() == null) {
+        if (result == null || result.getName() == null) {
             logger.error("Game not found " + mapper.writeValueAsString(name));
             throw new Exception(GameException.GAME_NOT_FOUND);
         }
@@ -114,7 +113,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game delete(Game game) throws Exception {
-        if(null == game || null == game.getId()){
+        if (null == game || null == game.getId()) {
             logger.error("Can't delete null object");
             throw new Exception(GameException.GAME_OBJECT_NULL);
         }
@@ -134,7 +133,7 @@ public class GameServiceImpl implements GameService {
 
         Game gameToDelete = gameRepository.findOne(game.getId());
 
-        if(null == gameToDelete || null == gameToDelete.getId()){
+        if (null == gameToDelete || null == gameToDelete.getId()) {
             logger.error("Can't delete game if not found" + mapper.writeValueAsString(game));
             throw new Exception(GameException.GAME_NOT_FOUND);
         }

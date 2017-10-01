@@ -53,16 +53,16 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
 
         // create the discussion
         Discussion discussion = new Discussion();
-        // TODO discussion title take always name of owner user
-        discussion.setTitle("");
-        discussion.setCreationDate(date);
-        discussion = discussionService.create(discussion);
 
         if (users.size() < 2)
             throw new DiscussionGroupException(DiscussionGroupException.NOT_ENOUGH_USERS);
 
         if (this.isDiscussionGroupExist(users))
             throw new DiscussionGroupException(DiscussionGroupException.DISCUSSION_GROUP_EXIST);
+
+        discussion.setTitle(users.get(0).getUserName());
+        discussion.setCreationDate(date);
+        discussion = discussionService.create(discussion);
 
         // first user in the list is the owner of the discussion
         List<DiscussionGroup> discussionGroups = new ArrayList<DiscussionGroup>();
@@ -102,10 +102,15 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
     public DiscussionGroup findById(int id) throws Exception {
 
         DiscussionGroup discussionGroup = discussionGroupRepository.findOne(id);
-        if(discussionGroup == null )
+        if (discussionGroup == null)
             throw new DiscussionGroupException(DiscussionGroupException.DISCUSSION_GROUP_NOT_FOUND);
 
         return discussionGroup;
+    }
+
+    @Override
+    public DiscussionGroup addUserToDiscussionGroup(DiscussionGroup discussionGroup, User user) {
+        return null;
     }
 
     private Boolean isDiscussionGroupExist(List<User> users) {
@@ -117,23 +122,23 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
                     discussionGroup.getDiscussion().getDiscussionGroups();
             if (discussionGroupOfDiscussion.size() == users.size()) {
                 Boolean isTheSameUsers = true;
-                for(DiscussionGroup dg : discussionGroupOfDiscussion) {
-                    if(users.indexOf(dg.getUser()) == -1 ){
+                for (DiscussionGroup dg : discussionGroupOfDiscussion) {
+                    if (users.indexOf(dg.getUser()) == -1) {
                         isTheSameUsers = false;
                         break;
                     }
                 }
-                if(isTheSameUsers)
+                if (isTheSameUsers)
                     return true;
             }
         }
         return false;
     }
 
-    private List<User> getAllUsersInformation (List<User> users) throws Exception {
+    private List<User> getAllUsersInformation(List<User> users) throws Exception {
 
         List<User> realUsers = new ArrayList<>();
-        for(User user : users ) {
+        for (User user : users) {
             User userToAdd = userService.getUserById(user.getId());
             realUsers.add(userToAdd);
         }

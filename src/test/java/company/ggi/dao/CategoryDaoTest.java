@@ -42,7 +42,7 @@ public class CategoryDaoTest {
     private String categoryNameTest;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         categoryDaoTest.deleteAll();
         categoryNameTest = "My test";
         categoryTest = new Category(categoryNameTest);

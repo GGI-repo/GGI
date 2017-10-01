@@ -46,52 +46,52 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SuppressWarnings("SpringJavaAutowiringInspection")
 public class BetApplicationTests {
 
-	@LocalServerPort
-	private int port;
-	private URL base;
+    @LocalServerPort
+    private int port;
+    private URL base;
 
-	@Autowired
-	private TestRestTemplate template;
+    @Autowired
+    private TestRestTemplate template;
 
-	@Autowired
-	WebApplicationContext context;
+    @Autowired
+    WebApplicationContext context;
 
-	@Autowired
-	private FilterChainProxy springSecurityFilterChain;
+    @Autowired
+    private FilterChainProxy springSecurityFilterChain;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
-	private MockMvc mvc;
+    private MockMvc mvc;
 
-	private User user;
+    private User user;
 
-	@Before
-	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:" + port + "/healthcheck");
-		this.mvc = MockMvcBuilders.webAppContextSetup(context)
-				.addFilter(springSecurityFilterChain).build();
-	}
+    @Before
+    public void setUp() throws Exception {
+        this.base = new URL("http://localhost:" + port + "/healthcheck");
+        this.mvc = MockMvcBuilders.webAppContextSetup(context)
+                .addFilter(springSecurityFilterChain).build();
+    }
 
-	@Test
-	public void testHealtCheck() throws Exception{
-		HealthCheckService healthCheck = this.template.getForObject(base.toString(), HealthCheckService.class);
-		assertThat(healthCheck.getVersion()).isNotNull();
-		assertThat(healthCheck.getMessage()).isNotNull();
-	}
+    @Test
+    public void testHealtCheck() throws Exception {
+        HealthCheckService healthCheck = this.template.getForObject(base.toString(), HealthCheckService.class);
+        assertThat(healthCheck.getVersion()).isNotNull();
+        assertThat(healthCheck.getMessage()).isNotNull();
+    }
 
-	@Test
-	public void testUnauthorizedAccess() throws Exception{
-		mvc.perform(get("/")
-				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isUnauthorized())
-				.andExpect(jsonPath("$.error", is("unauthorized")));
-	}
+    @Test
+    public void testUnauthorizedAccess() throws Exception {
+        mvc.perform(get("/")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.error", is("unauthorized")));
+    }
 /*
-	@Test
+    @Test
 	public void testAuthorizedAccess() throws Exception{
 		String accessToken = getAccessToken("user", "password");
 

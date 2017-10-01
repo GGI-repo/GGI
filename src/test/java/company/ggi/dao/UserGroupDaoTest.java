@@ -35,7 +35,7 @@ public class UserGroupDaoTest {
     private Double userGroupCredit1;
 
     @Before
-    public void Up(){
+    public void Up() {
 
         userGroupDaoTest.deleteAll();
         userGroupCredit1 = 2254.22;
@@ -51,12 +51,12 @@ public class UserGroupDaoTest {
     }
 
     @Test
-    public void userGroupDaoSaveTest(){
+    public void userGroupDaoSaveTest() {
         Assert.assertNotNull(userGroupDaoTest.findByName(userGroupNameTest1));
     }
 
     @Test
-    public void userGroupDaoFindAllTest(){
+    public void userGroupDaoFindAllTest() {
         Assert.assertEquals(userGroupDaoTest.findAll().get(0).getName(), userGroupNameTest1);
     }
 
@@ -66,26 +66,26 @@ public class UserGroupDaoTest {
     }*/
 
     @Test
-    public void userGroupDaoUpdateTest(){
+    public void userGroupDaoUpdateTest() {
 
-        userGroupNameTest1="Another Name";
+        userGroupNameTest1 = "Another Name";
         userGroupUpdate(userGroupNameTest1);
         Assert.assertEquals(userGroupDaoTest.findByName(userGroupNameTest1).getName(), userGroupNameTest1);
     }
 
     @Test
-    public void userGroupDaoDeleteTest(){
+    public void userGroupDaoDeleteTest() {
         userGroupDelete(userGroupTest1);
         Assert.assertNull(userGroupDaoTest.findByName(userGroupNameTest1));
     }
 
-    private void userGroupUpdate(String name){
+    private void userGroupUpdate(String name) {
 
         userGroupTest1.setName(name);
         userGroupDaoTest.save(userGroupTest1);
     }
 
-    private void userGroupDelete(UserGroup userGroup){
+    private void userGroupDelete(UserGroup userGroup) {
         userGroupDaoTest.delete(userGroup);
     }
 

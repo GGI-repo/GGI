@@ -31,7 +31,7 @@ public class DiscussionGroupController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity createNewDiscussionGroup(@RequestBody List<User> users,
-                                            final RedirectAttributes redirectAttributes) throws JsonProcessingException {
+                                                   final RedirectAttributes redirectAttributes) throws JsonProcessingException {
 
         logger.info("Service create discussion group called ");
         try {

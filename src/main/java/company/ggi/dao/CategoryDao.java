@@ -10,6 +10,6 @@ import java.util.List;
  * Created by ielfaqir on 10/04/2017.
  */
 public interface CategoryDao extends JpaRepository<Category, Integer> {
-	Category findByName(String name);
+    Category findByName(String name);
 
 }

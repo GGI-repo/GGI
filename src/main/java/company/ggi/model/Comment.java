@@ -11,10 +11,10 @@ import java.io.Serializable;
 public class Comment implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition ="text", unique=true , nullable = false)
+    @Column(columnDefinition = "text", unique = true, nullable = false)
     private String contenu;
 
     @Column(nullable = false)
@@ -25,7 +25,7 @@ public class Comment implements Serializable {
     private Party party;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_user")
+    @JoinColumn(name = "id_user")
     private User user;
 
     public Comment(String contenu, String commentDate) {

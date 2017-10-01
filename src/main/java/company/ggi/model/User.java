@@ -23,7 +23,9 @@ import java.util.List;
 public class User implements Serializable, UserDetails {
     public static enum ROLE {
         ADMIN, USER
-    };
+    }
+
+    ;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

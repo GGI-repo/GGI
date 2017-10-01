@@ -27,8 +27,9 @@ public class UserGroupTest {
     private Date userGroupCreationDate;
     private String userGroupNameTest;
     private Double userGroupCredit;
+
     @Before
-    public void Up(){
+    public void Up() {
         userGroupCredit = 2254.22;
         userGroupNameTest = "My test group";
         userGroupCreationDate = Calendar.getInstance().getTime();
@@ -36,22 +37,22 @@ public class UserGroupTest {
     }
 
     @Test
-    public void userGroupConstructorTest(){
+    public void userGroupConstructorTest() {
         Assert.assertNotNull(userGroupTest);
     }
 
     @Test
-    public void userGroupCreationDateGettersTest(){
+    public void userGroupCreationDateGettersTest() {
         Assert.assertEquals(userGroupTest.getCreationDate(), userGroupCreationDate);
     }
 
     @Test
-    public void userGroupNameGetterTest(){
+    public void userGroupNameGetterTest() {
         Assert.assertEquals(userGroupTest.getName(), userGroupNameTest);
     }
 
     @Test
-    public void userGroupCreditGetterTest(){
+    public void userGroupCreditGetterTest() {
         Assert.assertEquals(userGroupTest.getCredit(), userGroupCredit);
     }
 

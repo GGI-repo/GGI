@@ -11,10 +11,10 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USER_GROUP")
-public class UserGroup implements Serializable{
+public class UserGroup implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_userGroup")
     private Integer id;
 

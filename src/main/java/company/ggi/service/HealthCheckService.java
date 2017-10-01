@@ -11,7 +11,8 @@ public class HealthCheckService {
 
     private String version;
 
-    public HealthCheckService() {}
+    public HealthCheckService() {
+    }
 
     public HealthCheckService(String message, String version) {
         this.message = message;
