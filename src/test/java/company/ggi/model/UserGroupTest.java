@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ import java.util.List;
 public class UserGroupTest {
 
     private UserGroup userGroupTest;
-    private Date userGroupCreationDate;
+    private DateTime userGroupCreationDate;
     private String userGroupNameTest;
     private Double userGroupCredit;
 
@@ -34,8 +35,8 @@ public class UserGroupTest {
     public void Up() {
         userGroupCredit = 2254.22;
         userGroupNameTest = "My test group";
-        userGroupCreationDate = Calendar.getInstance().getTime();
-        userGroupTest = new UserGroup(userGroupNameTest, userGroupCreationDate, userGroupCredit);
+        userGroupCreationDate = new DateTime();
+        userGroupTest = new UserGroup(userGroupNameTest, userGroupCredit);
     }
 
     @Test

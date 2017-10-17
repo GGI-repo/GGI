@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class PartyTest {
         partyStartingDateTest = Calendar.getInstance().getTime();
         partyNameGroupTest = "party group name";
         game = new Game();
-        partyTest = new Party(partyNameTest, partyDescriptionTest, partyStartingDateTest, partyNameGroupTest, game);
+        partyTest = new Party(partyNameTest, partyDescriptionTest, new DateTime(partyStartingDateTest), partyNameGroupTest, game);
     }
 
     @Test

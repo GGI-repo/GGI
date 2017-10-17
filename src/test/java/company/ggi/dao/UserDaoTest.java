@@ -1,6 +1,7 @@
 package company.ggi.dao;
 
 import company.ggi.model.User;
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class UserDaoTest {
         userName = "UserName";
         firstName = "FirstName";
         email = "test.example@email.com";
-        userTest = new User(lastName, userName, firstName, email, birthDay);
+        userTest = new User(lastName, userName, firstName, email, new DateTime(birthDay));
         userTest = userDaoTest.save(userTest);
     }
 

@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class UserTest {
 
     private User testConstructorUser;
 
-    private Date birthDay;
+    private DateTime birthDay;
     private String lastName;
     private String userName;
     private String firstName;
@@ -33,12 +34,11 @@ public class UserTest {
 
     @Before
     public void setUp() {
-        birthDay = new Date(20100222);
+        birthDay = new DateTime();
         lastName = "LastName";
         userName = "UserName";
         firstName = "FirstName";
         email = "test.example@email.com";
-
         testConstructorUser = new User(lastName, userName, firstName, email, birthDay);
     }
 

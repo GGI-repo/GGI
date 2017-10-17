@@ -46,12 +46,13 @@ public class UserGroupDaoTest {
         userGroupNameTest1 = "My test group 1";
         userGroupCreationDate1 = Calendar.getInstance().getTime();
         users = new ArrayList<>();
-        userGroupTest1 = new UserGroup(userGroupNameTest1, userGroupCreationDate1, userGroupCredit1, users);
+
+        userGroupTest1 = new UserGroup(userGroupNameTest1, userGroupCredit1, users);
         userGroupDaoTest.save(userGroupTest1);
 
         userGroupNameTest2 = "My test group 2";
         userGroupCreationDate2 = Calendar.getInstance().getTime();
-        userGroupTest2 = new UserGroup(userGroupNameTest2, userGroupCreationDate2, userGroupCredit1, users);
+        userGroupTest2 = new UserGroup(userGroupNameTest2, userGroupCredit1, users);
         userGroupDaoTest.save(userGroupTest2);
     }
 

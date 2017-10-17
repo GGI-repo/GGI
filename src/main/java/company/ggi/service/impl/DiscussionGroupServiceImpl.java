@@ -9,6 +9,7 @@ import company.ggi.model.User;
 import company.ggi.service.DiscussionGroupService;
 import company.ggi.service.DiscussionService;
 import company.ggi.service.UserService;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
             throw new DiscussionGroupException(DiscussionGroupException.DISCUSSION_GROUP_EXIST);
 
         discussion.setTitle(users.get(0).getUserName());
-        discussion.setCreationDate(date);
+        discussion.setCreationDate(new DateTime(date));
         discussion = discussionService.create(discussion);
 
         // first user in the list is the owner of the discussion
@@ -70,7 +71,8 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
             DiscussionGroup discussionGroup = new DiscussionGroup();
             discussionGroup.setUser(user);
             discussionGroup.setDiscussion(discussion);
-            discussionGroup.setAddedToDiscussion(date);
+            DateTime dateTime = new DateTime(date);
+            discussionGroup.setAddedToDiscussion(dateTime);
             if (users.indexOf(user) == 0)
                 discussionGroup.setRole(DiscussionGroup.ROLE.Owner);
             else

@@ -90,6 +90,8 @@ public class Party implements Serializable {
         this.comments = comments;
     }
 
+    public Party(){}
+
     public Party(String name, String description, DateTime startingDate, String groupName, Game game) {
 
         this.name = name;

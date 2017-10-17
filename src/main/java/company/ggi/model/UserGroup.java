@@ -49,6 +49,14 @@ public class UserGroup implements Serializable {
         this.userList = userList;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public List<User> getUserList() {
         return userList;
     }

@@ -44,6 +44,7 @@ public class DiscussionGroup implements Serializable {
         this.user = user;
         this.discussion = discussion;
         this.role = role;
+        this.addedToDiscussion = new DateTime();
     }
 
     public DiscussionGroup() {

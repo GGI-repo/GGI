@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class MessageTest {
 
     private Message message;
     private String msg;
-    Date date;
+    DateTime date;
     private DiscussionGroup discussionGroup;
     private User user;
     private Discussion discussion;
@@ -33,13 +34,13 @@ public class MessageTest {
     @Before
     public void setUp() {
 
-        user = new User("LastName", "UserName", "FirstName", "test.example@email.com", new Date(20100222));
+        user = new User("LastName", "UserName", "FirstName", "test.example@email.com", new DateTime(new Date(20100222)) );
         discussion = new Discussion("Example title");
         role = DiscussionGroup.ROLE.Owner;
         discussionGroup = new DiscussionGroup(user, discussion, role);
         msg = "Example message";
-        date = new Date();
-        message = new Message(discussionGroup, msg, date);
+        date = new DateTime();
+        message = new Message(discussionGroup, msg);
     }
 
     @Test
