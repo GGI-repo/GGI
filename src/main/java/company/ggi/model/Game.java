@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Game implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -20,7 +20,7 @@ public class Game implements Serializable {
     @Column(nullable = false)
     private String discription;
     @OneToOne
-    @JoinColumn(name="id_category")
+    @JoinColumn(name = "id_category")
     private Category category;
 
     public Game() {
@@ -64,5 +64,4 @@ public class Game implements Serializable {
         this.discription = discription;
         this.category = category;
     }
-
 }

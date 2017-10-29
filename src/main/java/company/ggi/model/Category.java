@@ -8,13 +8,13 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "CATEGORY")
-public class Category  implements Serializable {
+public class Category implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
 
     public Category() {

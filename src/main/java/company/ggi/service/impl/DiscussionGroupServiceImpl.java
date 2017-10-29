@@ -2,13 +2,14 @@ package company.ggi.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import company.ggi.dao.DiscussionGroupDao;
-import company.ggi.dao.UserDao;
 import company.ggi.exception.DiscussionGroupException;
 import company.ggi.model.Discussion;
 import company.ggi.model.DiscussionGroup;
 import company.ggi.model.User;
 import company.ggi.service.DiscussionGroupService;
 import company.ggi.service.DiscussionService;
+import company.ggi.service.UserService;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
     private DiscussionGroupDao discussionGroupRepository;
 
     @Resource
-    private UserDao userDao;
+    private UserService userService;
 
     @Autowired
     private DiscussionService discussionService;
@@ -48,20 +49,21 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
         // getting users
         users = this.getAllUsersInformation(users);
 
-        Date date = new Date();
+        DateTime date = new DateTime();
         // getting users
 
         // create the discussion
         Discussion discussion = new Discussion();
-        discussion.setTitle("");
-        discussion.setCreationDate(date);
-        discussion = discussionService.create(discussion);
 
         if (users.size() < 2)
             throw new DiscussionGroupException(DiscussionGroupException.NOT_ENOUGH_USERS);
 
         if (this.isDiscussionGroupExist(users))
             throw new DiscussionGroupException(DiscussionGroupException.DISCUSSION_GROUP_EXIST);
+
+        discussion.setTitle(users.get(0).getUserName());
+        discussion.setCreationDate(date);
+        discussion = discussionService.create(discussion);
 
         // first user in the list is the owner of the discussion
         List<DiscussionGroup> discussionGroups = new ArrayList<DiscussionGroup>();
@@ -101,10 +103,15 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
     public DiscussionGroup findById(int id) throws Exception {
 
         DiscussionGroup discussionGroup = discussionGroupRepository.findOne(id);
-        if(discussionGroup == null )
+        if (discussionGroup == null)
             throw new DiscussionGroupException(DiscussionGroupException.DISCUSSION_GROUP_NOT_FOUND);
 
         return discussionGroup;
+    }
+
+    @Override
+    public DiscussionGroup addUserToDiscussionGroup(DiscussionGroup discussionGroup, User user) {
+        return null;
     }
 
     private Boolean isDiscussionGroupExist(List<User> users) {
@@ -116,24 +123,25 @@ public class DiscussionGroupServiceImpl implements DiscussionGroupService {
                     discussionGroup.getDiscussion().getDiscussionGroups();
             if (discussionGroupOfDiscussion.size() == users.size()) {
                 Boolean isTheSameUsers = true;
-                for(DiscussionGroup dg : discussionGroupOfDiscussion) {
-                    if(users.indexOf(dg.getUser()) == -1 ){
+                for (DiscussionGroup dg : discussionGroupOfDiscussion) {
+                    if (users.indexOf(dg.getUser()) == -1) {
                         isTheSameUsers = false;
                         break;
                     }
                 }
-                if(isTheSameUsers)
+                if (isTheSameUsers)
                     return true;
             }
         }
         return false;
     }
 
-    private List<User> getAllUsersInformation (List<User> users) throws Exception{
+    private List<User> getAllUsersInformation(List<User> users) throws Exception {
 
-        List<User> realUsers = new ArrayList<User>();
-        for(User user : users ) {
-            realUsers.add(userDao.findOne(user.getId()));
+        List<User> realUsers = new ArrayList<>();
+        for (User user : users) {
+            User userToAdd = userService.getUserById(user.getId());
+            realUsers.add(userToAdd);
         }
         return realUsers;
     }

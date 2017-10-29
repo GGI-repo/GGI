@@ -3,6 +3,7 @@ package company.ggi.service;
 import company.ggi.dao.*;
 import company.ggi.exception.BetException;
 import company.ggi.model.*;
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,15 +53,15 @@ public class BetServiceTest {
     private Party party;
     private Bet bet;
     private int credit;
-    private Date date;
+    private DateTime date;
 
 
     @Before
     public void setUp(){
         credit = 100;
-        date = new Date();
+        date = new DateTime();
 
-        user = new User("LastName", "test", "FirstName", "testForBet.example@email.fr", new Date());
+        user = new User("LastName", "test", "FirstName", "testForBet.example@email.fr", new DateTime());
         user = userDaoTest.save(user);
 
         category = new Category("MOBA"); // MOBA : multiplayer online battle arena

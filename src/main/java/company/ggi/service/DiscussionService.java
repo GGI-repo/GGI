@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface DiscussionService {
 
-    public Discussion create(Discussion discussion) throws Exception;
+    Discussion create(Discussion discussion) throws Exception;
 
-    public Discussion delete(int id) throws Exception;
+    Discussion delete(int id) throws Exception;
 
-    public List<Discussion> findAll();
+    List<Discussion> findAll();
 
-    public Discussion update(Discussion discussion) throws Exception;
+    Discussion update(Discussion discussion) throws Exception;
 
-    public Discussion findById(int id) throws Exception;
+    Discussion findById(int id) throws Exception;
 }

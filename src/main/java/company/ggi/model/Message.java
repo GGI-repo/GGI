@@ -1,8 +1,9 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by ismail ELFAQIR on 16/04/2017.
@@ -24,16 +25,11 @@ public class Message implements Serializable {
     private String message;
 
     @Column(nullable = false)
-    private Date sentDate;
-
-    public Message(DiscussionGroup discussionGroup, String message, Date sentDate) {
-        this.discussionGroup = discussionGroup;
-        this.message = message;
-        this.sentDate = sentDate;
-    }
+    private DateTime sentDate;
 
     public Message(DiscussionGroup discussionGroup, String message) {
         this.discussionGroup = discussionGroup;
+        sentDate = new DateTime();
         this.message = message;
     }
 
@@ -64,11 +60,11 @@ public class Message implements Serializable {
         this.message = message;
     }
 
-    public Date getSentDate() {
+    public DateTime getSentDate() {
         return sentDate;
     }
 
-    public void setSentDate(Date sentDate) {
+    public void setSentDate(DateTime sentDate) {
         this.sentDate = sentDate;
     }
 }

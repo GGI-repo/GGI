@@ -27,19 +27,19 @@ public class DiscussionTest {
     private String titleTest;
 
     @Before
-    public void setUp(){
-        
+    public void setUp() {
+
         titleTest = "this is Discussion test";
         discussionTest = new Discussion(titleTest);
     }
 
     @Test
-    public void discussionConstructorTest(){
+    public void discussionConstructorTest() {
         Assert.assertNotNull(discussionTest);
     }
 
     @Test
-    public void discussionMessageGetterTest(){
+    public void discussionMessageGetterTest() {
         Assert.assertTrue(discussionTest.getTitle().equals(titleTest));
     }
 

@@ -1,9 +1,10 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,10 +12,10 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USER_GROUP")
-public class UserGroup implements Serializable{
+public class UserGroup implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_userGroup")
     private Integer id;
 
@@ -22,20 +23,38 @@ public class UserGroup implements Serializable{
     private String name;
 
     @Column(nullable = false)
-    private Date creationDate;
+    private DateTime creationDate;
 
     private Double credit;
 
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "userGroup")
-    //private List<User> comments = new ArrayList<User>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "group_details",
+            joinColumns = {@JoinColumn(name = "id_users")},
+            inverseJoinColumns = {@JoinColumn(name = "id_userGroup")})
+    private List<User> userList = new ArrayList<>();
 
     public UserGroup() {
     }
 
-    public UserGroup(String name, Date creation_date, Double credit) {
+    public UserGroup(String name, Double credit) {
         this.name = name;
-        this.creationDate = creation_date;
+        this.creationDate = new DateTime();
         this.credit = credit;
+    }
+
+    public UserGroup(String name, Double credit, List<User> userList) {
+        this.name = name;
+        this.creationDate = new DateTime();
+        this.credit = credit;
+        this.userList = userList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public String getName() {
@@ -46,11 +65,11 @@ public class UserGroup implements Serializable{
         this.name = name;
     }
 
-    public Date getCreationDate() {
+    public DateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(DateTime creationDate) {
         this.creationDate = creationDate;
     }
 

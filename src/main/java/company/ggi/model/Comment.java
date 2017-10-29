@@ -1,32 +1,34 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Adam on 16/04/2017.
+ * Created by Adam BENJBARA on 16/04/2017.
  */
 @Entity
 @Table(name = "COMMENT")
 public class Comment implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(columnDefinition ="text", unique=true , nullable = false)
     private String content;
 
     @Column(nullable = false)
-    private Date commentDate;
+    private DateTime commentDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_party", nullable = false)
     private Party party;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_user")
+    @JoinColumn(name = "id_user")
     private User user;
 
     public Comment(){
@@ -34,9 +36,14 @@ public class Comment implements Serializable {
 
     public Comment(String content, Party party, User user) {
         this.content = content;
-        this.commentDate = new Date();
+        this.commentDate = new DateTime();
         this.party = party;
         this.user = user;
+    }
+
+    public Comment(String contenu, DateTime commentDate) {
+        this.content = contenu;
+        this.commentDate = commentDate;
     }
 
     public Integer getId() {
@@ -55,11 +62,12 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public Date getCommentDate() {
+
+    public DateTime getCommentDate() {
         return commentDate;
     }
 
-    public void setCommentDate(Date commentDate) {
+    public void setCommentDate(DateTime commentDate) {
         this.commentDate = commentDate;
     }
 

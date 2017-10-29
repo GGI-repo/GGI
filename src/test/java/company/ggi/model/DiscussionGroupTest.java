@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class DiscussionGroupTest {
     @Before
     public void setUp() {
 
-        user = new User("LastName", "UserName", "FirstName", "test.example@email.com", new Date(20100222));
+        user = new User("LastName", "UserName", "FirstName", "test.example@email.com", new DateTime(20100222));
         discussion = new Discussion("Example title");
         role = DiscussionGroup.ROLE.Owner;
         discussionGroup = new DiscussionGroup(user, discussion, role);

@@ -83,12 +83,42 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/test/resources/files/origin/database.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/test/resources/files/origin/example.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/devhome/env_TN/comparepropertiesmavenplugin/src/test/resources/pom.xml">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/build/resources/main/version.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/BetApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/config/OAuth2Config.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/config/ResourceServersConfig.java">
           <value>
             <set />
           </value>
@@ -113,12 +143,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/dao/UserDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/company/ggi/exception/CategoryException.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/company/ggi/model/Category.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/model/User.java">
           <value>
             <set />
           </value>
@@ -138,7 +178,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/service/HealthCheckService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/company/ggi/service/impl/CategoryServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/company/ggi/service/impl/UserService.java">
           <value>
             <set />
           </value>
@@ -154,6 +204,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/company/ggi/controller/CategoryControllerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/company/ggi/controller/qauto2Test.java">
           <value>
             <set />
           </value>

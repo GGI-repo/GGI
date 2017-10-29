@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by etudiant on 15/04/17.
@@ -27,31 +30,32 @@ public class UserGroupTest {
     private Date userGroupCreationDate;
     private String userGroupNameTest;
     private Double userGroupCredit;
+
     @Before
-    public void Up(){
+    public void Up() {
         userGroupCredit = 2254.22;
         userGroupNameTest = "My test group";
         userGroupCreationDate = Calendar.getInstance().getTime();
-        userGroupTest = new UserGroup(userGroupNameTest, userGroupCreationDate, userGroupCredit);
+        userGroupTest = new UserGroup(userGroupNameTest, userGroupCredit);
     }
 
     @Test
-    public void userGroupConstructorTest(){
+    public void userGroupConstructorTest() {
         Assert.assertNotNull(userGroupTest);
     }
 
     @Test
-    public void userGroupCreationDateGettersTest(){
-        Assert.assertEquals(userGroupTest.getCreationDate(), userGroupCreationDate);
+    public void userGroupCreationDateGettersTest() {
+        Assert.assertEquals(userGroupTest.getCreationDate(), new DateTime(userGroupCreationDate)) ;
     }
 
     @Test
-    public void userGroupNameGetterTest(){
+    public void userGroupNameGetterTest() {
         Assert.assertEquals(userGroupTest.getName(), userGroupNameTest);
     }
 
     @Test
-    public void userGroupCreditGetterTest(){
+    public void userGroupCreditGetterTest() {
         Assert.assertEquals(userGroupTest.getCredit(), userGroupCredit);
     }
 

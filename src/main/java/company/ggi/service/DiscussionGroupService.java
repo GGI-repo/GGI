@@ -16,4 +16,6 @@ public interface DiscussionGroupService {
     public List<DiscussionGroup> findDiscussionGroupsByDiscussion(Discussion discussion) throws Exception;
 
     public DiscussionGroup findById(int id) throws Exception;
+
+    public DiscussionGroup addUserToDiscussionGroup(DiscussionGroup discussionGroup, User user);
 }

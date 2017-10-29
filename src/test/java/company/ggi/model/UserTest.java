@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +31,7 @@ public class UserTest {
     private String userName;
     private String firstName;
     private String email;
+
     @Before
     public void setUp() {
         birthDay = new Date(20100222);
@@ -38,36 +40,36 @@ public class UserTest {
         firstName = "FirstName";
         email = "test.example@email.com";
 
-        testConstructorUser = new User(lastName, userName, firstName, email, birthDay);
+        testConstructorUser = new User(lastName, userName, firstName, email, new DateTime(birthDay));
     }
 
     @Test
-    public void testUserConstructor(){
+    public void testUserConstructor() {
         Assert.assertNotNull(testConstructorUser);
     }
 
     @Test
-    public void testUserLastNameGetter(){
-        Assert.assertEquals(testConstructorUser.getLastName(),lastName);
+    public void testUserLastNameGetter() {
+        Assert.assertEquals(testConstructorUser.getLastName(), lastName);
     }
 
     @Test
-    public void testUserUserNameGetter(){
-        Assert.assertEquals(testConstructorUser.getUserName(),userName);
+    public void testUserUserNameGetter() {
+        Assert.assertEquals(testConstructorUser.getUserName(), userName);
     }
 
     @Test
-    public void testUserFirstNameGetter(){
-        Assert.assertEquals(testConstructorUser.getFirstName(),firstName);
+    public void testUserFirstNameGetter() {
+        Assert.assertEquals(testConstructorUser.getFirstName(), firstName);
     }
 
     @Test
-    public void testUserEmailGetter(){
-        Assert.assertEquals(testConstructorUser.getEmail(),email);
+    public void testUserEmailGetter() {
+        Assert.assertEquals(testConstructorUser.getEmail(), email);
     }
 
     @Test
-    public void testUserBirthDayGetter(){
-        Assert.assertEquals(testConstructorUser.getBirthDay(), birthDay);
+    public void testUserBirthDayGetter() {
+        Assert.assertEquals(testConstructorUser.getBirthDay(), new DateTime(birthDay) );
     }
 }

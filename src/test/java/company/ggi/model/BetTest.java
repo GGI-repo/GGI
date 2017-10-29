@@ -1,5 +1,6 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class BetTest {
     @Before
     public void setUp(){
         credit =  50;
-        user = new User("LastName", "UserName", "FirstName", "test.example@email.com", new Date(20100222));
+        user = new User("LastName", "UserName", "FirstName", "test.example@email.com", new DateTime(20100222));
         betTest = new Bet(credit, new Party(),user);
     }
 

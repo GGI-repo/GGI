@@ -1,6 +1,7 @@
 package company.ggi.dao;
 
 import company.ggi.model.*;
+import org.joda.time.DateTime;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class CommentDaoTest {
     private Party party;
     private Comment commentTest;
     private String content;
-    private Date date;
+    private DateTime date;
 
 
 
@@ -52,9 +53,9 @@ public class CommentDaoTest {
     public void setUp() {
 
         content = "I comment to test";
-        date = new Date();
+        date = new DateTime();
 
-        user = new User("LastName", "test", "FirstName", "testForComment.example@email.fr", new Date());
+        user = new User("LastName", "test", "FirstName", "testForComment.example@email.fr", new DateTime());
         user = userDaoTest.save(user);
 
         category = new Category("MOBA"); // MOBA : multiplayer online battle arena
@@ -66,7 +67,7 @@ public class CommentDaoTest {
         party = new Party("ARAM","teamFightOnly",date,"TeamName",game);
         party = partyDaoTest.save(party);
 
-        commentTest = new Comment(content,party,user);
+        commentTest = new Comment("ok comment",party,user);
         commentTest = commentDaoTest.save(commentTest);
     }
 
@@ -78,7 +79,7 @@ public class CommentDaoTest {
 
     @Test
     public void commentDaoUpdateTest(){
-        String newComment = " a nother comment";
+        String newComment = "a nother comment ";
         commentTest.setContent(newComment);
         commentTest = commentDaoTest.save(commentTest);
 

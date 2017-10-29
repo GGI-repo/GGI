@@ -3,6 +3,7 @@ package company.ggi.dao;
 import company.ggi.model.Discussion;
 import company.ggi.model.DiscussionGroup;
 import company.ggi.model.User;
+import org.joda.time.DateTime;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class DiscussionGroupDaoTest {
         userDao.deleteAll();
         discussionDao.deleteAll();
 
-        user = new User("LastName", "test", "FirstName", "test.example@email.fr", new Date());
+        user = new User("LastName", "test", "FirstName", "test.example@email.fr", new DateTime());
         user = userDao.save(user);
         discussion = new Discussion("test");
         discussion = discussionDao.save(discussion);
@@ -80,7 +81,7 @@ public class DiscussionGroupDaoTest {
     public void discussionGroupDaoUpdateTest() {
 
         Discussion newDiscussion = new Discussion("test");
-        User newuser = new User("Test", "Test", "Test", "test.com", new Date(20100222));
+        User newuser = new User("Test", "Test", "Test", "test.com", new DateTime(20100222));
         DiscussionGroup.ROLE newrole = DiscussionGroup.ROLE.Nothing;
 
         newuser = userDao.save(newuser);

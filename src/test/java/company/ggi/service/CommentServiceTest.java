@@ -3,6 +3,7 @@ package company.ggi.service;
 import company.ggi.dao.*;
 import company.ggi.exception.CommentException;
 import company.ggi.model.*;
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -53,16 +54,16 @@ public class CommentServiceTest {
     private Party party;
     private Comment commentTest;
     private String content;
-    private Date date;
+    private DateTime date;
 
 
     @Before
     public void setUp() {
 
         content = "I comment to test";
-        date = new Date();
+        date = new DateTime();
 
-        user = new User("LastName", "test", "FirstName", "testForComment.example@email.fr", new Date());
+        user = new User("LastName", "test", "FirstName", "testForComment.example@email.fr", new DateTime());
         user = userDaoTest.save(user);
 
         category = new Category("MOBA"); // MOBA : multiplayer online battle arena

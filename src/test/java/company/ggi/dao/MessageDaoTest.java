@@ -4,6 +4,7 @@ import company.ggi.model.Discussion;
 import company.ggi.model.DiscussionGroup;
 import company.ggi.model.Message;
 import company.ggi.model.User;
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,7 +46,6 @@ public class MessageDaoTest {
 
     private String msg;
 
-    private Date sentDate;
 
     private DiscussionGroup discussionGroup;
 
@@ -62,7 +62,7 @@ public class MessageDaoTest {
         discussionDao.deleteAll();
         userDao.deleteAll();
 
-        user = new User("LastName", "test", "FirstName", "test.example@email.fr", new Date());
+        user = new User("LastName", "test", "FirstName", "test.example@email.fr", new DateTime());
         discussion = new Discussion("test");
         discussionGroup = new DiscussionGroup(user, discussion, DiscussionGroup.ROLE.Owner);
 
@@ -71,8 +71,7 @@ public class MessageDaoTest {
         discussionGroup = discussionGroupDao.save(discussionGroup);
 
         msg = "test";
-        sentDate = new Date();
-        message = new Message(discussionGroup, msg, sentDate);
+        message = new Message(discussionGroup, msg);
 
         message = messageDao.save(message);
     }
@@ -97,18 +96,18 @@ public class MessageDaoTest {
     public void messageDaoUpdateTest() {
 
         final String test = "test";
-        Date newdate = new Date();
+        DateTime newDate = new DateTime();
 
         message.setMessage(test);
-        message.setSentDate(newdate);
+        message.setSentDate(newDate);
         message = messageDao.save(message);
 
         Assert.assertTrue(message.getMessage().equals(test));
-        Assert.assertEquals(newdate, message.getSentDate());
+        Assert.assertEquals(newDate, message.getSentDate());
     }
 
     @Test
-    public void  messageDaoDeleteTest() {
+    public void messageDaoDeleteTest() {
 
         messageDao.delete(message.getId());
         Assert.assertNull(messageDao.findOne(message.getId()));

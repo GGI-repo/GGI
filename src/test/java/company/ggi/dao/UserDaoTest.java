@@ -1,6 +1,7 @@
 package company.ggi.dao;
 
 import company.ggi.model.User;
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class UserDaoTest {
 
     @Autowired
     private UserDao userDaoTest;
-    private Date birthDay;
+    private DateTime birthDay;
     private User userTest;
     private String lastName;
     private String userName;
@@ -35,24 +36,24 @@ public class UserDaoTest {
     private String email;
 
     @Before
-    public void Up(){
+    public void Up() {
         userDaoTest.deleteAll();
-        birthDay = new Date(20100222);
+        birthDay = new DateTime(20100222);
         lastName = "LastName";
         userName = "UserName";
         firstName = "FirstName";
         email = "test.example@email.com";
-        userTest=new User(lastName, userName, firstName, email, birthDay);
+        userTest = new User(lastName, userName, firstName, email, birthDay);
         userTest = userDaoTest.save(userTest);
     }
 
     @Test
-    public void userDaoSaveTest(){
+    public void userDaoSaveTest() {
         Assert.assertNotNull(userDaoTest.findByEmail(email));
     }
 
     @Test
-    public void userDaoFindAllTest(){
+    public void userDaoFindAllTest() {
         Assert.assertEquals(userDaoTest.findAll().get(0).getEmail(), userTest.getEmail());
     }
 
@@ -64,17 +65,17 @@ public class UserDaoTest {
     }
 
     @Test
-    public void userDaoDeleteTest(){
+    public void userDaoDeleteTest() {
         deleteUser(userTest);
         Assert.assertNull(userDaoTest.findByUserName(userName));
     }
 
-    private void updateUserFirstNameDao(String firstName){
+    private void updateUserFirstNameDao(String firstName) {
         userTest.setFirstName(firstName);
         userDaoTest.save(userTest);
     }
 
-    private void deleteUser(User user){
+    private void deleteUser(User user) {
         userDaoTest.delete(user.getId());
     }
 }

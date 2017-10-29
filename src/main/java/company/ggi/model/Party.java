@@ -1,9 +1,10 @@
 package company.ggi.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,16 +22,17 @@ public class Party implements Serializable {
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
-    private Date startingDate;
+    private DateTime startingDate;
     @Column(nullable = false)
     private String GroupName;
 
     @OneToOne
-    @JoinColumn(name="id_game")
+    @JoinColumn(name = "id_game")
     private Game game;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "party")
-    private List<Comment> comments = new ArrayList<Comment>();;
+    private List<Comment> comments = new ArrayList<Comment>();
+    ;
 
     public Integer getId() {
         return id;
@@ -56,11 +58,11 @@ public class Party implements Serializable {
         this.description = description;
     }
 
-    public Date getStartingDate() {
+    public DateTime getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(Date startingDate) {
+    public void setStartingDate(DateTime startingDate) {
         this.startingDate = startingDate;
     }
 
@@ -88,7 +90,7 @@ public class Party implements Serializable {
         this.comments = comments;
     }
 
-    public Party(String name, String description, Date startingDate, String groupName, Game game) {
+    public Party(String name, String description, DateTime startingDate, String groupName, Game game) {
 
         this.name = name;
         this.description = description;
